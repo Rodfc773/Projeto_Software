@@ -1,1 +1,1 @@
-# Repositorio para a disciplina de proheto de software
+# Repositorio para a disciplina de projeto de software
