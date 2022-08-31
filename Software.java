@@ -26,7 +26,7 @@ public class Software {
 
             System.out.println("Bem vindo ao sistema de Gerenciamento de Projetos, Qual operação deseja realizar?\n");
             System.out.println("1 : Criar/Retirar informações");
-            System.out.println("2 : Editar informações\n3 : Listar Projetos/Atividades");
+            System.out.println("2 : Editar informações\n3 : Listar Projetos/Atividades\nQualquer outro numero: Encerrar");
 
             opcao = Integer.parseInt(teclado.nextLine());
 
@@ -190,7 +190,7 @@ public class Software {
                     System.out.println("Status: "+i.status);
                     System.out.println("Descrição: "+i.descricao);
                     System.out.println("Coordenador: "+i.coordenador.nome);
-                    System.out.println("Inicio: "+i.data_inicio +"\nPrazo: " + i.data_termino);
+                    System.out.println("Inicio: "+i.data_inicio +"\nPrazo: " + i.data_termino + "\n");
  
                 }
 
@@ -201,7 +201,16 @@ public class Software {
                     System.out.println("ID: "+j.id);
                     System.out.println("Descrição: "+j.descricao);
                     System.out.println("Coordenador: "+j.responsavel);
-                    System.out.println("Inicio: "+j.data_inicio +"\nPrazo: " + j.data_fim);
+                    System.out.println("Inicio: "+j.data_inicio +"\nPrazo: " + j.data_fim+"\n");
+                }
+
+                System.out.println("!++++++++++++++ Users ++++++++!");
+
+                for (Usuarios it : users) {
+
+                    System.out.println("Nome: " +it.nome);
+                    System.out.println("Tipo: " +it.tipo + "\n");
+                    
                 }
             }
             else
