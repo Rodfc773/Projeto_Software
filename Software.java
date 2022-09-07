@@ -1,224 +1,244 @@
-import java.text.ParsePosition;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import javax.sound.midi.Soundbank;
-import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import Classes.Atividades;
 import Classes.Projeto;
 import Classes.Usuarios;
+import Funcionalidades.Criar;
+import Funcionalidades.Editar;
+import Funcionalidades.Listar;
+import Funcionalidades.Login;
+import Funcionalidades.Retirar;
+import Funcionalidades.Sistema;
 
 public class Software {
 
     public static void main(String[] args) {
         
-        LinkedList <Projeto> projetos = new LinkedList<Projeto>();
-        LinkedList <Usuarios> users = new LinkedList<Usuarios>();
-        LinkedList <Atividades> atividades = new LinkedList<Atividades>();
+       Sistema menu = new Sistema();
+       Usuarios admin = new Usuarios();
+       LinkedList <Usuarios> users = new LinkedList<Usuarios>();
+       LinkedList <Projeto> projetos = new LinkedList<Projeto>();
+       LinkedList <Atividades> atividades = new LinkedList<Atividades>();
+       Scanner tecladoScanner = new Scanner(System.in);
 
-        int idProjeto = 0, idAtividade = 0;
+       users.add(admin);
 
-        while (true){
-            int opcao;
+       while(true){
 
-            Scanner teclado = new Scanner(System.in);
+            menu.printSistema();
 
-            System.out.println("Bem vindo ao sistema de Gerenciamento de Projetos, Qual operação deseja realizar?\n");
-            System.out.println("1 : Criar/Retirar informações");
-            System.out.println("2 : Editar informações\n3 : Listar Projetos/Atividades\nQualquer outro numero: Encerrar");
+            int opcao = tecladoScanner.nextInt();
 
-            opcao = Integer.parseInt(teclado.nextLine());
+            try{
 
-            if(opcao == 1){
+                switch (opcao){
 
-                System.clearProperty("clear");
-                System.out.println("O que deseja fazer?\n1: Criar | 2 : Retirar\n");
-
-                int opcao2 = Integer.parseInt(teclado.nextLine());
-
-                if(opcao2 == 1){
-
-                   System.out.println("Deseja criar, (1: Novo Projeto) | (2 : Nova Atividade) | (3 : Novo Usuario) : ");
-
-                   int opcao3 = Integer.parseInt(teclado.nextLine());
-
-                   if (opcao3 == 1){
-
-                    System.clearProperty("clear");
-                        Projeto auxProjeto = new Projeto();
-                        auxProjeto.Criar(idProjeto);
-
-                        Usuarios coordenador = new Usuarios();
-                        coordenador.coordenador();
-
-                        users.add(coordenador);
-
-                        auxProjeto.coordenador = coordenador;
-
-                        projetos.add(auxProjeto);
-
-                        idProjeto += 1;
-
-                        System.out.println("Projeto criado com sucesso!!\n");
-
-
-    
-                   }
-                   if (opcao3 == 2){
-
-                        System.clearProperty("clear");
-
-                        Atividades auxAtividades = new Atividades();
-                        auxAtividades.criar(idAtividade);
-
-                        atividades.add(auxAtividades);
-
-                        idAtividade += 1;
-                        System.out.println("Atividade criada com sucesso!!\n");
-                        
-                   }
-                   if(opcao3 == 3){
-
-                    Usuarios auxUsuarios = new Usuarios();
-                    auxUsuarios.Cadastro();
-                    users.add(auxUsuarios);
-
-                   }
-                   continue;
-
-                }
-                else{
-
-                    int aux;
-
-                    System.out.println("O que deseja remover?(1 : Projetos | 2 : Atividades | 3 : Usuarios): ");
-                    aux = teclado.nextInt();
-
-                    if(aux == 1){
-
-                        if(projetos.isEmpty()){
-
-                            System.out.println("Não existem projetos cadastrados\n");
-                        }
-                        else{
-
-                            System.clearProperty("clear");
-
-                            for (Projeto projeto : projetos) 
-                            {
-                                System.out.println("Id: " +projeto.id);
-                                System.out.println("\nDescrição: " +projeto.descricao);
-                                System.out.println("\nStatuts: " +projeto.status);
-    
-                            }
-    
-                            System.out.println("Deseje Retirar qual projeto?(digite o ID): ");
-                            int id = teclado.nextInt();
-
-                            projetos.remove(id);
-
-    
-                        }
-                    }
-                    if(aux == 2)
-                    {
-
-                        if(atividades.isEmpty()){
-
-                            System.out.println("Não tem nenhuma atividade em andamento");
-                        }
-                        else{
-
-                            System.clearProperty("clear");
-
-                            for (Atividades atividades2 : atividades) {
-
-                                System.out.println("Id: " +atividades2.id);
-                                System.out.println("Descrição: " +atividades2.descricao);
-                                
-                            }
-
-                            System.out.println("Qual Atividade deseja retirar?(Digite o ID): ");
-
-                            int id = teclado.nextInt();
-
-                            atividades.remove(id);
-                        }
-                    }
-                    continue;
-                }
-            }
-            if(opcao == 2)
-            {
-
-                System.out.println("O Que deseja Editar?\n(1 : Projetos | 2 : Atividades | 3 : Usuarios):");
-
-                int opcao2 = teclado.nextInt();
-
-                switch (opcao2) {
+                    case 0:
+                        tecladoScanner.close();
+                        System.exit(0);
+                        break;
                     case 1:
-                        
-                        for (Projeto i : projetos) {
+    
+                        Criar criacao = new Criar();
+                        Retirar remover = new Retirar();
+    
+                        menu.printCriar();
+    
+                        int opcao2 = tecladoScanner.nextInt();
 
-                        System.out.println("ID: "+i.id);
-                        System.out.println("Status: "+i.status);
-                        System.out.println("Descrição: "+i.descricao);
+                        tecladoScanner.nextLine();
+                        
+    
+    
+                        switch (opcao2){
+    
+                            case 1:
+
+                                Projeto projeto = new Projeto();
+
+                               projeto = criacao.criarProjetos();
+
+                               projeto.setID(projetos.size());
+
+                               projetos.add(projeto);
+    
+                               break;
+                            case 2:
+
+                                Atividades atividade = new Atividades();
+                                atividade = criacao.criarAtividade();
+
+                                atividade.SetID(atividades.size());
+
+                                atividades.add(atividade);
+
+    
+                                break;
+                            case 3:
+
+                                Usuarios user = new Usuarios();
+                                user = criacao.criarUsuario();
+                                user.setID(users.size());
+
+                                users.add(user);
+
+                                break;
+                            case  4:
+
+                                projetos =  remover.retirarProjetos(projetos);
+                                break;
+                            case 5:
+                                atividades = remover.retirarAtividades(atividades);
+                                break;
+                            
+                            case 6:
+                                users = remover.retirarUsuarios(users);
+                                break;
+    
+                            default:
+                                break;
                             
                         }
-
-                        System.out.println("Escolha um Projeto pra ser editado(Digite seu ID): ");
-
-                        int index = teclado.nextInt();
-
-                        projetos.get(index).editar();
                         break;
-                
-                    default:
+                    case 2:
+
+                        Editar edicao = new Editar();
+
+                        menu.printEditar();
+
+                        int oP= tecladoScanner.nextInt();
+
+                        switch(oP){
+
+                            case 1:
+                                System.out.println("Digite o ID do projeto que queira editar: ");
+                                int id = tecladoScanner.nextInt();
+
+                                try{
+                                    Projeto aux = projetos.get(id);
+
+                                    aux = edicao.editarProjeto(aux, users);
+
+                                    projetos.set(id, aux);
+                                }catch(Exception y){
+
+                                    System.out.println("Não existe Projeto cadastrado com esse ID");
+                                }
+
+                                break;
+                            case 2:
+
+                                System.out.println("Digite o ID da atividade que queira editar: ");
+                                id = tecladoScanner.nextInt();
+
+                                try{
+
+                                    Atividades auxAtividades = atividades.get(id);
+
+                                    auxAtividades = edicao.editarAtividades(auxAtividades, users);
+    
+                                    atividades.set(id, auxAtividades);
+                                }catch(Exception y){
+
+                                    System.out.println("Não existe Atividade cadastrado com esse ID");
+                                }                  
+                                break;
+                            case 3:
+
+                                System.out.println("Digite o ID do Usuário que queira editar: ");
+                                id = tecladoScanner.nextInt();
+
+                                try{
+
+                                    Usuarios auxUsuarios = users.get(id);
+
+                                    auxUsuarios = edicao.editarUser(auxUsuarios, users);
+
+                                    users.set(id, auxUsuarios);
+                                }catch(Exception y){
+
+                                    System.out.println("Não existe usuário cadastrado com esse ID");
+                                }
+
+                                 break;
+                            default:
+
+                                break;
+
+
+                        }
+
                         break;
-                }
+                    case 3:
 
+                        break;
+                    case 4:
 
+                        break;
+                    case 5:
 
+                        break;
+                    case 6:
+
+                        break;
+                    case 7:
+
+                        break;
+                    case 8:
+
+                        break;
+                    case 9:
+
+                        Login login = new Login();
+
+                        boolean verify = login.verificarLogin(users);
+
+                        if(!(verify)){
+
+                            System.out.println("Login Inválido, tente novamente");
+                        }
+
+                        break;
+                    case 10:
+
+                        break;
+
+                    case 11:
+    
+                        int op;
+                        menu.printListar();
+                        Listar func = new Listar();
+
+                         op = tecladoScanner.nextInt();
+
+                        switch(op){
+
+                            case 1:
+
+                                func.listarProjetos(projetos);
+                                break;
+                            case 2:
+                                func.listarAtividades(atividades);
+                                break;
+                            case 3:
+                                func.listarUsuarios(users);
+                                 break;
+                            }
+                        break;
+    
+                        default:
+    
+                            System.out.println("!----------- ERRO, DIGITE UMA OPÇÃO VÁLIDA ---------------!");
+                            break;
+                    }
             }
-            if(opcao == 3)
-            {
-                System.out.println("!------- PROJETOS ------!");
-                for (Projeto i : projetos) {
+            catch(Exception y){
 
-                    System.out.println("ID: "+i.id);
-                    System.out.println("Status: "+i.status);
-                    System.out.println("Descrição: "+i.descricao);
-                    System.out.println("Coordenador: "+i.coordenador.nome);
-                    System.out.println("Inicio: "+i.data_inicio +"\nPrazo: " + i.data_termino + "\n");
- 
-                }
-
-                System.out.println("!########### Atividades ########!");
-
-                for (Atividades j : atividades) {
-                    
-                    System.out.println("ID: "+j.id);
-                    System.out.println("Descrição: "+j.descricao);
-                    System.out.println("Coordenador: "+j.responsavel);
-                    System.out.println("Inicio: "+j.data_inicio +"\nPrazo: " + j.data_fim+"\n");
-                }
-
-                System.out.println("!++++++++++++++ Users ++++++++!");
-
-                for (Usuarios it : users) {
-
-                    System.out.println("Nome: " +it.nome);
-                    System.out.println("Tipo: " +it.tipo + "\n");
-                    
-                }
+                System.out.println(y);
             }
-            else
-            {
-                System.out.println("Encerrando o sistema de gerenciamento!");
-                break;
-            }
-        }
+       }
     }
     
 }

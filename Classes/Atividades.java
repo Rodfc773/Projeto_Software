@@ -1,31 +1,62 @@
 package Classes;
 
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class Atividades {
     
-    public int id;
-    public String descricao;
-    public String data_inicio;
-    public String data_fim;
-    public LinkedList<Usuarios >responsavel;
-    public LinkedList <Usuarios> profissionais;
+    private int id;
+    private String descricao;
+    private String dataInicio;
+    private String dataFim;
+    private LinkedList<Usuarios> profissionais;
+    private Usuarios responsavel;
+    private LinkedList <Usuarios> tarefasRealizadasPorProfissionais;
 
-    public void criar(int id){
+
+    public int getID(){
+
+        return this.id;
+    }
+    public String getDescricao(){
+
+        return this.descricao;
+    }
+    public String  getDataInicial(){
+
+        return this.dataInicio;
+    }
+    public String getDataFim(){
+
+        return this.dataFim;
+    }
+    public String getName(){
+
+        return responsavel.getNome();
+    }
+
+    public void SetID(int id){
 
         this.id = id;
+    }
+    public void setDescricao(String descricao){
 
-        System.out.println("Digite a Descrição da atividade: ");
-        Scanner tecaladoScanner = new Scanner(System.in);
+        this.descricao = descricao; 
+    }
+    public void setDataInicio(String dataInicio){
 
-        descricao = tecaladoScanner.nextLine();
+        this.dataInicio = dataInicio;
+    }
+    public void setDataFinal(String dataFinal){
 
-        System.out.println("Digite a Data de inicio da atividade: ");
-        data_inicio = tecaladoScanner.nextLine();
+        this.dataFim = dataFinal;
+    }
+    public void setResponsavel(Usuarios responsavel){
 
-        System.out.println("Digite o Prazo da atividade: ");
-        data_fim = tecaladoScanner.nextLine();
+        this.responsavel = responsavel;
+    }
+    public void setProfissionais(Usuarios profissionais){
 
+        this.profissionais.add(profissionais);
+        
     }
 }

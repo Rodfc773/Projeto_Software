@@ -1,39 +1,111 @@
 package Classes;
 
-import java.util.Scanner;
+import java.util.LinkedList;
 
 public class Usuarios {
     
-    int id;
-    public String nome;
-    public String tipo;
+    private int id;
+    private String nome;
+    private String tipo;
     //Variavel para identificar qual o tipo de usuario: aluno de graduação, mestrado e etc......
-    public float bolsa;
-    public String periodo_bolsa;
+    private Boolean possuiBolsa;
+    private Double bolsa;
+    private String periodoBolsa;
+    private LinkedList <Projeto> projetos;
+    private LinkedList <Atividades> atividades;
+    private String email;
+    private String password;
 
-    public void Cadastro(){
+    public Usuarios(){
 
-        Scanner tecla = new Scanner(System.in);
-        System.out.println("Cadastre o nome do usuario: ");
-        nome = tecla.nextLine();
-
-        System.out.println("Informe o tipo, ex(Aluno de mestrado): ");
-        tipo = tecla.nextLine();
-
-        bolsa = 0.0f;
-        periodo_bolsa = null;
+        this.id = 0;
+        this.nome = "Admin";
+        this.tipo = "Administrador";
+        this.possuiBolsa = false;
+        this.bolsa = 0.0;
+        this.periodoBolsa = "None";
+        this.email = "Admin@gmail.com";
+        this.password = "Adminprojetos";
     }
 
-    public void coordenador(){
+    public int getID(){
 
-        Scanner tecla = new Scanner(System.in);
-        System.out.println("Cadastre o nome do Coordenador: ");
-        nome = tecla.nextLine();
+        return this.id;
 
-        System.out.println("Informe o tipo, ex(Aluno de mestrado): ");
-        tipo = tecla.nextLine();
-
-        bolsa = 0.0f;
-        periodo_bolsa = null;
     }
+    public String getNome(){
+
+        return this.nome;
+    }
+    public String getTipo(){
+
+        return this.tipo;
+    }
+    public Double getBolsa(){
+
+        return this.bolsa;
+    }
+    public String getPeriodoBolsa(){
+
+        return this.periodoBolsa;
+    }
+    public String getPassword(){
+
+        return this.password;
+    }
+    public String getEmail(){
+
+        return this.email;
+    }
+    public Boolean getPossuiBolsa()
+    {
+        return this.possuiBolsa;
+    }
+
+
+    //################ COMEÇO DOS METÓDOS SETTERS ################################
+
+
+    public void setID(int id){
+
+        this.id = id;
+    }
+
+    public void setNome(String nome){
+
+        this.nome = nome;
+    }
+    public void setBolsa(double bolsa){
+
+        this.bolsa = bolsa;
+    }
+    public void setPeriodoBolsa(String periodoBolsa){
+
+        this.periodoBolsa = periodoBolsa;
+    }
+    public void setProjetos(Projeto projeto){
+
+        this.projetos.add(projeto);
+    }
+    public void setAtividades(Atividades atividade){
+
+        this.atividades.add(atividade);
+    }
+    public void setTipo(String tipo){
+
+        this.tipo = tipo;
+    }
+    public void setPassword(String password){
+
+        this.password = password;
+    }
+    public void setEmail(String email){
+
+        this.email = email;
+    }
+    public void setPossuiBolsa(Boolean possuiBolsa){
+
+        this.possuiBolsa = possuiBolsa;
+    }
+    
 }
