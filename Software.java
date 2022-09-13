@@ -158,7 +158,7 @@ public class Software {
 
                         break;
                     case 3:
-
+ 
                         if(login.type != Ruler.ADMIN){
 
                             System.out.println("Para associar é nescessário está logado em uma conta de Acess level Admin");
