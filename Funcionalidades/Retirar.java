@@ -8,9 +8,7 @@ import Classes.Projeto;
 import Classes.Usuarios;
 
 public class Retirar {
-    
     public LinkedList<Projeto> retirarProjetos(LinkedList<Projeto> projetos){
-        
 
         if(projetos.isEmpty()){
 
@@ -21,11 +19,21 @@ public class Retirar {
         }
         Sistema menu = new Sistema();
 
-        menu.printPegarID();
+        System.out.println("Digite o nome do Projeto que deseja Retirar: ");
         Scanner teclado = new Scanner(System.in);
-        int id = teclado.nextInt();
+        String nomeProjeto = teclado.nextLine();
 
-        projetos.remove(id);
+        for(Projeto projeto : projetos){
+
+            if(projeto.getNomeProjeto().equals(nomeProjeto)){
+
+                System.out.println("!-------------          Projeto Removido com sucesso            -----------!\n\n");
+                projetos.remove(projeto);
+                return projetos;
+            }
+        }
+        System.out.println("!-----------            ERROR           ---------!");
+        System.out.println("!-----------        Atividade não existe ---------!");
 
         return projetos;
     }
@@ -41,38 +49,23 @@ public class Retirar {
         else{
             Sistema menu = new Sistema();
 
-            menu.printPegarID();
+            System.out.println("Digite o nome da atividade que deseja retirar: ");
             Scanner teclado = new Scanner(System.in);
-            int id = teclado.nextInt();
+            String nomeAtividade = teclado.nextLine();
 
-            atividades.remove(id);
+            for(Atividades atividade : atividades ){
+
+                if(atividade.getNomeAtvd().equals(nomeAtividade)){
+
+                    atividades.remove(atividade);
+                    System.out.println("!---- -------------       Atividade removida com sucesso        ------------!\n\n");
+                    return atividades;
+                }
+            }
+            System.out.println("!-----------            ERROR           ---------!");
+            System.out.println("!-----------        Atividade não existe ---------!");
 
         return atividades;
         }
-    }
-    public LinkedList <Usuarios> retirarUsuarios(LinkedList<Usuarios> users){
-
-        if(users.isEmpty()){
-
-            System.out.println("!------ NÃO EXISTEM USUÁRIOS CADASTRADOS ---!");
-            System.out.println("!------ POR FAVOR CADASTRE UM ---------------!");
-            
-            return users;
-        }
-        Sistema menu = new Sistema();
-
-        menu.printPegarID();
-        Scanner teclado = new Scanner(System.in);
-        int id = teclado.nextInt();
-
-        if(id == 0){
-
-            System.out.println("Não é possivel excluir o Administrador, por favor escolha outro usuario");
-
-            return users;
-        }
-
-        users.remove(id);
-        return users;
     }
 }

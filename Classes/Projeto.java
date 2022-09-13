@@ -4,24 +4,32 @@ import java.util.LinkedList;
 //import java.time.LocalDate;
 
 public class Projeto {
-   
+
     private int id;
-    private String status;
+    private String nomeProjeto;
+    public Status status = Status.CRIADO;
     private String descricao;
     private String dataInicial;
     private String dataFinal;
-    private LinkedList <Usuarios>profissionais;
+    private LinkedList <Usuarios> profissionais;
+    private LinkedList <Atividades> tasks;
     private Usuarios coordenador;
 
-
+    public Projeto(){
+        this.id = 0;
+        this.nomeProjeto = null;
+        this.status = Status.CRIADO;
+        this.descricao = null;
+        this.dataInicial = null;
+        this.dataFinal = null;
+        this.profissionais = new LinkedList<Usuarios>();
+        this.tasks = new LinkedList<Atividades>();
+        this.coordenador = null;
+    }
     //############################## MÉTODOS GETTERS ######################################################
     public int getId(){
 
         return this.id;
-    }
-    public String getStatus(){
-
-        return this.status;
     }
     public String getDescricao(){
 
@@ -39,6 +47,23 @@ public class Projeto {
 
         return this.coordenador.getNome();
     }
+    public Usuarios getCoordenador(){
+
+        return this.coordenador;
+    }
+    public LinkedList <Usuarios> getProfissionais()
+    {
+            return this.profissionais;
+
+    }
+    public Enum getStatus(){
+
+        return this.status;
+    }
+    public String getNomeProjeto(){
+
+        return this.nomeProjeto;
+    }
 
 
     //######################## MÉTODOS SETTERS #############################
@@ -46,12 +71,6 @@ public class Projeto {
 
         this.id = id;
     }
-
-    public void setStatus(String status){
-
-        this.status = status;
-    }
-
     public void setDescricao(String descricao){
 
         this.descricao = descricao;
@@ -60,7 +79,7 @@ public class Projeto {
     public void setdataInicial(String dataInicial){
 
         this.dataInicial = dataInicial;
-        
+
     }
     public void setDataFinal(String dataFinal){
 
@@ -70,8 +89,24 @@ public class Projeto {
 
         this.coordenador = coordenador;
     }
+    public void setStatus(){
+        this.status = Status.CRIADO;
+    }
     public void setProfissionais(Usuarios profissional){
 
         this.profissionais.add(profissional);
     }
-}      
+    public void setStatusIniciado(){
+
+        this.status = Status.INICIADO;
+    }
+    public void setStatusAndamento(){
+        this.status = Status.ANDAMENTO;
+    }
+    public void setStatusFinalizado(){
+        this.status = Status.FINALIZADO;
+    }
+    public void setNomeProjeto(String nomeProjeto){
+        this.nomeProjeto = nomeProjeto;
+    }
+}

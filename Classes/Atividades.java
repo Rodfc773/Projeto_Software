@@ -3,8 +3,8 @@ package Classes;
 import java.util.LinkedList;
 
 public class Atividades {
-    
     private int id;
+    private String nomeAtividade;
     private String descricao;
     private String dataInicio;
     private String dataFim;
@@ -33,6 +33,10 @@ public class Atividades {
 
         return responsavel.getNome();
     }
+    public String getNomeAtvd(){
+
+        return this.nomeAtividade;
+    }
 
     public void SetID(int id){
 
@@ -57,6 +61,10 @@ public class Atividades {
     public void setProfissionais(Usuarios profissionais){
 
         this.profissionais.add(profissionais);
-        
+
+    }
+    public void setNomeAtividae(String nomeAtividade){
+
+        this.nomeAtividade = nomeAtividade;
     }
 }

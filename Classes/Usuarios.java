@@ -1,9 +1,6 @@
 package Classes;
 
-import java.util.LinkedList;
-
 public class Usuarios {
-    
     private int id;
     private String nome;
     private String tipo;
@@ -11,11 +8,9 @@ public class Usuarios {
     private Boolean possuiBolsa;
     private Double bolsa;
     private String periodoBolsa;
-    private LinkedList <Projeto> projetos;
-    private LinkedList <Atividades> atividades;
     private String email;
     private String password;
-
+    public Ruler type = Ruler.DEFAULT;
     public Usuarios(){
 
         this.id = 0;
@@ -26,6 +21,7 @@ public class Usuarios {
         this.periodoBolsa = "None";
         this.email = "Admin@gmail.com";
         this.password = "Adminprojetos";
+        this.type = Ruler.ADMIN;
     }
 
     public int getID(){
@@ -61,6 +57,10 @@ public class Usuarios {
     {
         return this.possuiBolsa;
     }
+    public Enum getAcessLevel(){
+
+        return this.type;
+    }
 
 
     //################ COMEÇO DOS METÓDOS SETTERS ################################
@@ -83,14 +83,6 @@ public class Usuarios {
 
         this.periodoBolsa = periodoBolsa;
     }
-    public void setProjetos(Projeto projeto){
-
-        this.projetos.add(projeto);
-    }
-    public void setAtividades(Atividades atividade){
-
-        this.atividades.add(atividade);
-    }
     public void setTipo(String tipo){
 
         this.tipo = tipo;
@@ -101,11 +93,11 @@ public class Usuarios {
     }
     public void setEmail(String email){
 
+        if(!email.contains("@")) return;
         this.email = email;
     }
     public void setPossuiBolsa(Boolean possuiBolsa){
 
         this.possuiBolsa = possuiBolsa;
     }
-    
 }

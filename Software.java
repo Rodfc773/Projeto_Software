@@ -4,26 +4,34 @@ import java.util.Scanner;
 
 import Classes.Atividades;
 import Classes.Projeto;
+import Classes.Ruler;
 import Classes.Usuarios;
+import Funcionalidades.Associar;
 import Funcionalidades.Criar;
 import Funcionalidades.Editar;
 import Funcionalidades.Listar;
-import Funcionalidades.Login;
 import Funcionalidades.Retirar;
+import Funcionalidades.Runner;
 import Funcionalidades.Sistema;
 
 public class Software {
 
     public static void main(String[] args) {
-        
+
        Sistema menu = new Sistema();
        Usuarios admin = new Usuarios();
-       LinkedList <Usuarios> users = new LinkedList<Usuarios>();
+       admin.setID(1);
+       Usuarios login = new Usuarios();
+       login = null;
+
+
        LinkedList <Projeto> projetos = new LinkedList<Projeto>();
        LinkedList <Atividades> atividades = new LinkedList<Atividades>();
        Scanner tecladoScanner = new Scanner(System.in);
 
-       users.add(admin);
+       Runner run = new Runner();
+
+       run.users.add(admin);
 
        while(true){
 
@@ -40,66 +48,77 @@ public class Software {
                         System.exit(0);
                         break;
                     case 1:
-    
+
                         Criar criacao = new Criar();
                         Retirar remover = new Retirar();
-    
+
                         menu.printCriar();
-    
+
                         int opcao2 = tecladoScanner.nextInt();
 
                         tecladoScanner.nextLine();
-                        
-    
-    
+
                         switch (opcao2){
-    
+
                             case 1:
 
                                 Projeto projeto = new Projeto();
 
-                               projeto = criacao.criarProjetos();
+                               projeto = criacao.criarProjetos(login);
 
-                               projeto.setID(projetos.size());
+                                if(projeto != null){
 
-                               projetos.add(projeto);
-    
+                                    projeto.setID(projetos.size());
+                                    projetos.add(projeto);
+
+                                }
+                                else{
+                                    System.out.println("Não foi possivel criar o projeto");
+                                }
+
+
                                break;
                             case 2:
 
                                 Atividades atividade = new Atividades();
-                                atividade = criacao.criarAtividade();
+                                if(atividade != null){
 
-                                atividade.SetID(atividades.size());
+                                    atividade = criacao.criarAtividade(login);
 
-                                atividades.add(atividade);
+                                    atividade.SetID(atividades.size());
 
-    
+                                    atividades.add(atividade);
+
+                               }
+                               else{
+                                    System.out.println("Não foi possivel criar a Atividade");
+                                }
                                 break;
                             case 3:
 
-                                Usuarios user = new Usuarios();
-                                user = criacao.criarUsuario();
-                                user.setID(users.size());
-
-                                users.add(user);
+                                run.Runner(login);
 
                                 break;
                             case  4:
 
-                                projetos =  remover.retirarProjetos(projetos);
+                                if(login.type == Ruler.ADMIN && login != null){
+                                    projetos =  remover.retirarProjetos(projetos);
+                                }
+                                else{
+                                    System.out.println("É nescessário está logado em uma conta de Acess level de Admin");
+                                }
                                 break;
                             case 5:
-                                atividades = remover.retirarAtividades(atividades);
+
+                                if(login.type == Ruler.ADMIN && login != null){
+                                    atividades = remover.retirarAtividades(atividades);
+                                }
+                                else{
+                                    System.out.println("É nescessário está logado em uma conta de Acess level de Admin");
+                                }
                                 break;
-                            
-                            case 6:
-                                users = remover.retirarUsuarios(users);
-                                break;
-    
                             default:
                                 break;
-                            
                         }
                         break;
                     case 2:
@@ -113,65 +132,59 @@ public class Software {
                         switch(oP){
 
                             case 1:
-                                System.out.println("Digite o ID do projeto que queira editar: ");
-                                int id = tecladoScanner.nextInt();
+                                if(login.type == Ruler.ADMIN && login != null){
 
-                                try{
-                                    Projeto aux = projetos.get(id);
-
-                                    aux = edicao.editarProjeto(aux, users);
-
-                                    projetos.set(id, aux);
-                                }catch(Exception y){
-
-                                    System.out.println("Não existe Projeto cadastrado com esse ID");
+                                    projetos = edicao.editarProjeto(projetos);
                                 }
-
+                                else{
+                                    System.out.println("É nescessário está logado em uma conta de Acess level de Admin");
+                                }
                                 break;
                             case 2:
 
-                                System.out.println("Digite o ID da atividade que queira editar: ");
-                                id = tecladoScanner.nextInt();
+                                if(login.type == Ruler.ADMIN && login != null){
 
-                                try{
-
-                                    Atividades auxAtividades = atividades.get(id);
-
-                                    auxAtividades = edicao.editarAtividades(auxAtividades, users);
-    
-                                    atividades.set(id, auxAtividades);
-                                }catch(Exception y){
-
-                                    System.out.println("Não existe Atividade cadastrado com esse ID");
-                                }                  
-                                break;
-                            case 3:
-
-                                System.out.println("Digite o ID do Usuário que queira editar: ");
-                                id = tecladoScanner.nextInt();
-
-                                try{
-
-                                    Usuarios auxUsuarios = users.get(id);
-
-                                    auxUsuarios = edicao.editarUser(auxUsuarios, users);
-
-                                    users.set(id, auxUsuarios);
-                                }catch(Exception y){
-
-                                    System.out.println("Não existe usuário cadastrado com esse ID");
+                                    atividades = edicao.editarAtividades(atividades);
                                 }
-
-                                 break;
+                                else{
+                                    System.out.println("É nescessário está logado em uma conta de Acess level de Admin");
+                                }
+                                break;
                             default:
 
                                 break;
-
 
                         }
 
                         break;
                     case 3:
+
+                        if(login.type != Ruler.ADMIN){
+
+                            System.out.println("Para associar é nescessário está logado em uma conta de Acess level Admin");
+                            break;
+                        }
+                        menu.printAssociar();
+                        Associar function = new Associar();
+
+                        int option = tecladoScanner.nextInt();
+                        tecladoScanner.nextLine();
+
+                        switch(option){
+
+                            case 1:
+
+                                projetos = function.usersToProject(projetos, run.users);
+
+
+                                break;
+                            case 2:
+
+                                break;
+                            case 3:
+
+                                break;
+                        }
 
                         break;
                     case 4:
@@ -191,14 +204,9 @@ public class Software {
                         break;
                     case 9:
 
-                        Login login = new Login();
+                        login =  run.login();
 
-                        boolean verify = login.verificarLogin(users);
-
-                        if(!(verify)){
-
-                            System.out.println("Login Inválido, tente novamente");
-                        }
+                        System.out.println(login == null ? "Nenhum Usuário encontrado com esse login" : "Login bem sucedido!"); 
 
                         break;
                     case 10:
@@ -206,7 +214,7 @@ public class Software {
                         break;
 
                     case 11:
-    
+
                         int op;
                         menu.printListar();
                         Listar func = new Listar();
@@ -223,13 +231,11 @@ public class Software {
                                 func.listarAtividades(atividades);
                                 break;
                             case 3:
-                                func.listarUsuarios(users);
-                                 break;
+                                func.listarUsuarios(run.users);
+                                break;
                             }
                         break;
-    
                         default:
-    
                             System.out.println("!----------- ERRO, DIGITE UMA OPÇÃO VÁLIDA ---------------!");
                             break;
                     }
@@ -240,5 +246,5 @@ public class Software {
             }
        }
     }
-    
+
 }

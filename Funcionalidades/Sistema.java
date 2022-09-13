@@ -2,7 +2,6 @@ package Funcionalidades;
 
 
 public class Sistema {
-    
     public void printSistema(){
 
         System.out.println("!-------------- SISTEMA DE GERENCIAMENTO DE PROJETOS ---------------!");
@@ -32,12 +31,13 @@ public class Sistema {
         System.out.println("+-----------------                                --------------+");
         System.out.println("+-----------------      1 : Criar Projetos        --------------+");
         System.out.println("+-----------------      2 : Criar Atividades      --------------+");
-        System.out.println("+-----------------      3 : Criar Usuários        --------------+");
+        System.out.println("+-----------------      3 : Criar Usuários       --------------+");
         System.out.println("+-----------------      4 : Remover Projetos      --------------+");
         System.out.println("+-----------------      5 : Remover Atividades    --------------+");
-        System.out.println("+-----------------      6 : Remover Usuários      --------------+");
 
     }
+
+    //#######################       MÉTODOS PRINTS EDITAR           ###########################################
     public void printEditar(){
 
         System.out.println("+-------------------    FUNCIONALIDADE : EDIÇÃO    ------------------+");
@@ -100,7 +100,23 @@ public class Sistema {
         System.out.println("+-----------------      2 : Tipo                   -------------+");
         System.out.println("+-----------------      3 : Bolsa                  -------------+");
         System.out.println("+-----------------      4 : Periodo da bolsa       -------------+");
-        System.out.println("+-----------------      5 : Email/Senha            -------------+");
+        System.out.println("+-----------------      5 : Email                  -------------+");
+        System.out.println("+-----------------      6 : Senha                  -------------+");
+
+
+
+    }
+    //###########################          MÉTODOS DE PRINT ASSOCIAR #######################################//
+
+    public void printAssociar(){
+
+        System.out.println("+-------------------    ASSOCIAÇÃO            ------------------+");
+        System.out.println("+---------------------------------------------------------------+");
+        System.out.println("+-----------------      O QUE DESEJA ASSOCIAR?    --------------+");
+        System.out.println("+-----------------                                 -------------+");
+        System.out.println("+-----------------      1 : Usuários -->  Projeto    -------------+");
+        System.out.println("+-----------------      2 : Usuaários--> Atividades  -------------+");
+        System.out.println("+-----------------      3 : Atividades --> Projetos   -------------+");
 
 
     }

@@ -5,120 +5,96 @@ import java.util.Scanner;
 
 import Classes.Atividades;
 import Classes.Projeto;
+import Classes.Ruler;
 import Classes.Usuarios;
 
 public class Criar {
 
-     public Projeto criarProjetos()
+     public Projeto criarProjetos(Usuarios user)
     {
         Sistema menuSistema = new Sistema();
         Scanner teclaScanner = new Scanner(System.in);
         Projeto projeto = new Projeto();
 
-        menuSistema.printCriarProjetoDescricao();
-        String descricao = teclaScanner.nextLine();
+        if(user.getAcessLevel().equals(Ruler.ADMIN)){
+            System.out.println("Digite o nome do projeto: ");
+            String nomeProjeto = teclaScanner.nextLine();
+            projeto.setNomeProjeto(nomeProjeto);
 
-        projeto.setDescricao(descricao);
+            menuSistema.printCriarProjetoDescricao();
+            String descricao = teclaScanner.nextLine();
 
-        menuSistema.printCriarProjetoDataInicial();
-        String dataInicial = teclaScanner.nextLine();
-        
-        menuSistema.printCriarProjetoDataFinal();
-        String dataFinal = teclaScanner.nextLine();
+            projeto.setDescricao(descricao);
 
-        projeto.setdataInicial(dataInicial);
-        projeto.setDataFinal(dataFinal);
+            menuSistema.printCriarProjetoDataInicial();
+            String dataInicial = teclaScanner.nextLine();
+            menuSistema.printCriarProjetoDataFinal();
+            String dataFinal = teclaScanner.nextLine();
 
-        projeto.setStatus("Em criação");
+            projeto.setdataInicial(dataInicial);
+            projeto.setDataFinal(dataFinal);
+            projeto.setStatus();
 
+            System.out.println("Deseja cadastrar esse usuario: " +user.getNome() + " Como o coordenador do projeto?(1 : sim e 2 : Não");
 
-        
+            int op = teclaScanner.nextInt();
+            teclaScanner.nextLine();
+
+            switch (op){
+
+                case 1:
+                    projeto.setCoodernador(user);
+                    break;
+                case 2:
+                    System.out.println("Por favor vá a função associar e cadastre um coordenador pro projeto");
+                    break;
+                default:
+                    System.out.println("Por favor vá a função associar e cadastre um coordenador pro projeto");
+                    break;
+            }
+
+        }
+        else{
+
+            System.out.println("Por favor logue em uma conta de coordenador ou Professor:");
+            projeto = null;
+            return projeto;
+        }
 
         return projeto;
 
-        
-        
     }
-    public Usuarios criarUsuario()
-    {
-        Sistema menuSistema = new Sistema();
-        Scanner tecladoScanner = new Scanner(System.in);
-        Usuarios user = new Usuarios();
-
-
-        menuSistema.printCriarUsuarioNome();
-        String nome = tecladoScanner.nextLine();
-        user.setNome(nome);
-
-        menuSistema.printCriarUsuarioTipo();
-        String tipo = tecladoScanner.nextLine();
-        user.setTipo(tipo);
-
-        menuSistema.printCriarUsuarioEmail();
-        String email = tecladoScanner.nextLine();
-        user.setEmail(email);
-
-        menuSistema.printCriarUsuarioPassword();
-        String password = tecladoScanner.nextLine();
-        user.setPassword(password);
-
-        menuSistema.printCriarUsuarioPossuiBolsa();
-        int opcao = tecladoScanner.nextInt();
-
-        switch(opcao){
-
-            case 1:
-                user.setPossuiBolsa(true);
-
-                menuSistema.printCriarBolsa();
-                double bolsa = tecladoScanner.nextDouble();
-                user.setBolsa(bolsa);
-
-                menuSistema.printCriarUsuarioPeriodoBolsa();
-                String periodoBolsa = tecladoScanner.nextLine();
-                user.setPeriodoBolsa(periodoBolsa);
-
-                break;
-            case 2:
-
-                user.setPossuiBolsa(false);
-                user.setBolsa(0.0);
-                break;
-        }
-
-
-        try {
-            Thread.sleep(0);     // Espera 1 segundo para ver a mágica acontecer
-            new ProcessBuilder("clear").inheritIO().start().waitFor();      // Para linux (acho que para mac também)
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-
-        return user;
-    }
-
-    public Atividades criarAtividade(){
+    public Atividades criarAtividade(Usuarios login){
 
         Atividades atividade = new Atividades();
-        Sistema menu = new Sistema();
-        Scanner teclaScanner = new Scanner(System.in);
+        if(login.type == Ruler.ADMIN){
+            Sistema menu = new Sistema();
+            Scanner teclaScanner = new Scanner(System.in);
 
-        menu.printCriarAtividadeDescricao();
-        String descricao = teclaScanner.nextLine();
-        atividade.setDescricao(descricao);
+            System.out.println("Digite o nome da atividade: ");
+            String nomeAtividade = teclaScanner.nextLine();
+            atividade.setNomeAtividae(nomeAtividade);
 
-        menu.printCriarAtividadeDataInicial();
-        String dataInicio = teclaScanner.nextLine();
-        atividade.setDataInicio(dataInicio);
+            menu.printCriarAtividadeDescricao();
+            String descricao = teclaScanner.nextLine();
+            atividade.setDescricao(descricao);
 
-        menu.printCriarAtividadeDataFinal();
-        String dataFinal = teclaScanner.nextLine();
-        atividade.setDataFinal(dataFinal);
+            menu.printCriarAtividadeDataInicial();
+            String dataInicio = teclaScanner.nextLine();
+            atividade.setDataInicio(dataInicio);
 
-        menu.printCriarAtividadeResponsavel();
+            menu.printCriarAtividadeDataFinal();
+            String dataFinal = teclaScanner.nextLine();
+            atividade.setDataFinal(dataFinal);
+
+            menu.printCriarAtividadeResponsavel();
+        }
+        else{
+            System.out.println("Por favor logue em uma conta de coordenador ou Professor");
+            atividade = null;
+        }
 
         return atividade;
     }
-    
+
 }
