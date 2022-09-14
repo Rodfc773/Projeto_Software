@@ -5,7 +5,7 @@
 
 ### Como rodar a aplicação: 
 
-  * __Para rodar a maior parte das funcionalidades vai ser nescessário estar logado na conta inicial, a conta Administrador, caso não seja feito o login, as principaus funcionalidades emitiram um erro__
+  * __Para rodar a maior parte das funcionalidades vai ser nescessário estar logado na conta inicial, a conta Administrador, caso não seja feito o login, as principais funcionalidades emitiram um erro__
 
   * Login da conta admin = Admin@gmail.com
   * Senha da conta  admin = Adminprojetos 
