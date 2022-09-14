@@ -23,7 +23,7 @@
 
 * No caso, ao criar um projeto, conta do tipo professor/pesquisador será alocada como coordenador desse projeto;
 
-* É nescessario que a conta do professor/pesquisador tenha em seu tipo "Professor" ou "Pesquisador" com a primeira letar maiúscula para poder ganhar n
+* É nescessario que a conta do professor/pesquisador tenha em seu tipo "Professor" ou "Pesquisador" com a primeira letar maiúscula para poder ganhar nível de acesso ADMIN;
 
 * Ao criar  uma atividade é , será nescessário associar um responsável pela funcionalidade 3;
 
