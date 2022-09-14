@@ -11,7 +11,7 @@ import Classes.Usuarios;
 
 public class Editar {
 
-    public LinkedList <Projeto> editarProjeto(LinkedList<Projeto> projetos){
+    public LinkedList <Projeto> editarProjeto(LinkedList<Projeto> projetos, Usuarios user){
 
         Scanner teclado = new Scanner(System.in);
         Sistema menu = new Sistema();
@@ -22,24 +22,31 @@ public class Editar {
 
             if(projeto.getNomeProjeto().equals(nomeProjeto)){
 
+                if(projeto.getCoordenador() != user){
+
+                    System.out.println("!--------------         ERROR       ----------------!");
+                    System.out.println("Só o coordenador do projeto é permitido alterar as informações");
+                    return projetos;
+                }
+
                 menu.printEditarProjeto();
                 int op = teclado.nextInt();
                 teclado.nextLine();
-        
+
                 switch(op){
-        
+
                     case 1:
                         menu.printEditarProjetoDescricao();
                         String newdescription = teclado.nextLine();
-        
+
                         projeto.setDescricao(newdescription);
-        
+
                         break;
                     case 2:
                         menu.printEditarProjetoPrazo();
                         String dataFinal = teclado.nextLine();
                         projeto.setDataFinal(dataFinal);
-        
+
                         break;
                     default:
                         break;

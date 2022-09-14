@@ -137,7 +137,7 @@ public class Software {
                                 try{
                                     if(login.type == Ruler.ADMIN && login != null){
 
-                                        projetos = edicao.editarProjeto(projetos);
+                                        projetos = edicao.editarProjeto(projetos, login);
                                     }
                                 }catch(Exception y){
 
@@ -222,14 +222,17 @@ public class Software {
                         break;
                         
                     case 5:
-                        int op;
+                        try{
+                            if(login != null){
+
+                                int op;
                         menu.printListar();
                         Listar func = new Listar();
 
                          op = tecladoScanner.nextInt();
                          tecladoScanner.nextLine();
 
-                        switch(op){
+                            switch(op){
 
                             case 1:
 
@@ -241,6 +244,12 @@ public class Software {
                             case 3:
                                 func.listarUsuarios(run.users);
                                 break;
+                            }
+                        }
+                        }catch(Exception y){
+
+                            System.out.println("!------------   ERROR ----------------!");
+                            System.out.println("!------------   Não tem nenhuma conta logado --------------!\n");
                         }
                         break;
                     case 6:

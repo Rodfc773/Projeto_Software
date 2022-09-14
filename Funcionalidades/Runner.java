@@ -139,6 +139,13 @@ public class Runner {
         System.out.println("Digite o email do aluno que queira retirar: ");
         String email = scan.nextLine();
 
+        if(email.equals("Admin@gmail.com")){
+
+            System.out.println("Não é permitido remover o Administrador");
+
+            return users;
+        }
+
         for (Usuarios user : users){
 
             if(user.getEmail().equals(email)){
@@ -159,6 +166,13 @@ public class Runner {
 
         System.out.println("Digite o email da conta que queira Editar: ");
         String email = scan.nextLine();
+
+        if(email.equals("Admin@gmail.com")){
+
+            System.out.println("Não é permitido Editar o Administrador");
+
+            return users;
+        }
 
         Usuarios aux = new Usuarios();
 
