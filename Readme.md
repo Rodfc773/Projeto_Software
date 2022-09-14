@@ -11,9 +11,9 @@
   * Senha da conta  admin = Adminprojetos 
 
 
-##### Funcionalidades:
+### Funcionalidades:
 
-1. Criar/Retirar:
+### 1. Criar/Retirar:
 
 * A conta admin só poderá criar usuários;
 
@@ -27,25 +27,25 @@
 
 * Não é possível Remover a conta admin;
 
-2. Editar informações: 
+### 2. Editar informações: 
 
 *  Somente o coordenador do projeto pode alterar informações do projeto em si;
 *  Qualquer conta com o nivel de acesso de ADMIN pode alterar informações sobre os usuários/atividades;
 *  A alteração de usuários é feita na funcionalidade 1.3 : Criar/Remover usuarios, nas opções de administrador;
 
-3. Associar: 
+### 3. Associar: 
 
 * Somente contas de ususarios de nivel acesso admin podem usar a função associar;
 
 * Caso uma das partes associadas não esteja cadastrada, o programa dará um erro ou não inmprimira nada na tela;
 
-4. Alterar status de um projeto:
+### 4. Alterar status de um projeto:
 
 * Somente o coordenador do projeto poderá alterar seu status
 
 * As alterações são do tipo: CRIADO --> INICIADO, INICIADO --> ANDAMENTO, ANDAMENTO --> FINALIZADO;
 
-5. Consultar:
+### 5. Consultar:
 
 * Qualquer conta tem a permissão para fazer a consultar;
 
@@ -53,28 +53,28 @@
         
 * As consulta também podem ser feitas de forma sobre um único projeto  ou atvidade/usuario(faltando implementação);
 
-6. Relátorio:
+### 6. Relátorio:
 
 * Qualquer conta tem a permissão de pedir um relatório de um projeto
 
 * A funcionalidade ira imprimir na tela dados mais detalhados sobre o projeto, como atividade cadastradas para esse projeto e os usuarios associados;
 
-7. Intercâmbio entre usuarios:
+### 7. Intercâmbio entre usuarios:
 
 * A função ainda não foi desenvolvida;
 
-8. Sistema de pagamento de bolsas:
+### 8. Sistema de pagamento de bolsas:
 
 * A função ainda não foi desenvolvida;
 
     
-9. Login:
+### 9. Login:
 
     * A funcionalidade permiti o login através do email e senha;
     * Após o sucesso de login, o usuario ficará na conta logada até que se faça login denovo;
     * A opção de deslogar ainda está sendo feita;
 
-10. Undo/Redo:
+### 10. Undo/Redo:
 
 * Função ainda não foi implementada;
 
