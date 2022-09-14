@@ -13,70 +13,70 @@
 
 ##### Funcionalidades:
 
-    1. Criar/Retirar:
+1. Criar/Retirar:
 
-        * A conta admin só poderá criar usuários;
+* A conta admin só poderá criar usuários;
 
-        * A conta admin pode usar qualquer funcionalidade de remover;
+* A conta admin pode usar qualquer funcionalidade de remover;
 
-        * Para criação de projeto/atividades é nescessário a criação de uma conta/login de uma conta do tipo Professor ou Pesquisador;
+* Para criação de projeto/atividades é nescessário a criação de uma conta/login de uma conta do tipo Professor ou Pesquisador;
 
-        * No caso, ao criar um projeto, conta do tipo professor/pesquisador será alocada como coordenador desse projeto;
+* No caso, ao criar um projeto, conta do tipo professor/pesquisador será alocada como coordenador desse projeto;
 
-        * Ao criar  uma atividade é , será nescessário associar um responsável pela funcionalidade 3;
+* Ao criar  uma atividade é , será nescessário associar um responsável pela funcionalidade 3;
 
-        * Não é possível Remover a conta admin;
-    
-    2. Editar informações: 
+* Não é possível Remover a conta admin;
 
-        *  Somente o coordenador do projeto pode alterar informações do projeto em si;
-        *  Qualquer conta com o nivel de acesso de ADMIN pode alterar informações sobre os usuários/atividades;
-        *  A alteração de usuários é feita na funcionalidade 1.3 : Criar/Remover usuarios, nas opções de administrador;
+2. Editar informações: 
 
-    3. Associar: 
+*  Somente o coordenador do projeto pode alterar informações do projeto em si;
+*  Qualquer conta com o nivel de acesso de ADMIN pode alterar informações sobre os usuários/atividades;
+*  A alteração de usuários é feita na funcionalidade 1.3 : Criar/Remover usuarios, nas opções de administrador;
 
-        * Somente contas de ususarios de nivel acesso admin podem usar a função associar;
+3. Associar: 
 
-        * Caso uma das partes associadas não esteja cadastrada, o programa dará um erro ou não inmprimira nada na tela;
+* Somente contas de ususarios de nivel acesso admin podem usar a função associar;
 
-    4. Alterar status de um projeto:
+* Caso uma das partes associadas não esteja cadastrada, o programa dará um erro ou não inmprimira nada na tela;
 
-        * Somente o coordenador do projeto poderá alterar seu status
+4. Alterar status de um projeto:
 
-        * As alterações são do tipo: CRIADO --> INICIADO, INICIADO --> ANDAMENTO, ANDAMENTO --> FINALIZADO;
+* Somente o coordenador do projeto poderá alterar seu status
 
-    5.  Consultar:
+* As alterações são do tipo: CRIADO --> INICIADO, INICIADO --> ANDAMENTO, ANDAMENTO --> FINALIZADO;
 
-        * Qualquer conta tem a permissão para fazer a consultar;
+5. Consultar:
 
-        * As consultas podem ser feitas de forma listando todos os objetos ex: listar todas atividades cadastradas;
+* Qualquer conta tem a permissão para fazer a consultar;
+
+* As consultas podem ser feitas de forma listando todos os objetos ex: listar todas atividades cadastradas;
         
-        * As consulta também podem ser feitas de forma sobre um único projeto  ou atvidade/usuario(faltando implementação);
+* As consulta também podem ser feitas de forma sobre um único projeto  ou atvidade/usuario(faltando implementação);
 
-    6. Relátorio:
+6. Relátorio:
 
-        * Qualquer conta tem a permissão de pedir um relatório de um projeto
+* Qualquer conta tem a permissão de pedir um relatório de um projeto
 
-        * A funcionalidade ira imprimir na tela dados mais detalhados sobre o projeto, como atividade cadastradas para esse projeto e os usuarios associados;
+* A funcionalidade ira imprimir na tela dados mais detalhados sobre o projeto, como atividade cadastradas para esse projeto e os usuarios associados;
 
-    7. Intercâmbio entre usuarios:
+7. Intercâmbio entre usuarios:
 
-        * A função ainda não foi desenvolvida;
+* A função ainda não foi desenvolvida;
 
-    8. Sistema de pagamento de bolsas:
+8. Sistema de pagamento de bolsas:
 
-        * A função ainda não foi desenvolvida;
+* A função ainda não foi desenvolvida;
 
     
-    9. Login:
+9. Login:
 
-        * A funcionalidade permiti o login através do email e senha;
-        * Após o sucesso de login, o usuario ficará na conta logada até que se faça login denovo;
-        * A opção de deslogar ainda está sendo feita;
+    * A funcionalidade permiti o login através do email e senha;
+    * Após o sucesso de login, o usuario ficará na conta logada até que se faça login denovo;
+    * A opção de deslogar ainda está sendo feita;
 
-    10. Undo/Redo:
+10. Undo/Redo:
 
-        * Função ainda não foi implementada;
+* Função ainda não foi implementada;
 
 
 
