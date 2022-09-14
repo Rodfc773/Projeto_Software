@@ -70,9 +70,11 @@
     
 ### 9. Login:
 
-    * A funcionalidade permiti o login através do email e senha;
-    * Após o sucesso de login, o usuario ficará na conta logada até que se faça login denovo;
-    * A opção de deslogar ainda está sendo feita;
+* A funcionalidade permiti o login através do email e senha;
+
+* Após o sucesso de login, o usuario ficará na conta logada até que se faça login denovo;
+
+* A opção de deslogar ainda está sendo feita;
 
 ### 10. Undo/Redo:
 
