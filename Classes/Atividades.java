@@ -10,9 +10,21 @@ public class Atividades {
     private String dataFim;
     private LinkedList<Usuarios> profissionais;
     private Usuarios responsavel;
-    private LinkedList <Usuarios> tarefasRealizadasPorProfissionais;
 
 
+    //################################      METODOO CONSNTRUTOS ###############################################
+
+    public Atividades(){
+
+        this.id = 0;
+        this.nomeAtividade = null;
+        this.descricao = null;
+        this.dataInicio = null;
+        this.dataFim = null;
+        this.profissionais = new LinkedList<Usuarios>();
+        this.responsavel = null;
+    }
+    //#################################     METODOS GETTERS #######################################################
     public int getID(){
 
         return this.id;
@@ -38,6 +50,7 @@ public class Atividades {
         return this.nomeAtividade;
     }
 
+    //##################################### METODOS SETTERS ##################################################333
     public void SetID(int id){
 
         this.id = id;

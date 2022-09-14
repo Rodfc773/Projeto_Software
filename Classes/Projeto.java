@@ -64,6 +64,10 @@ public class Projeto {
 
         return this.nomeProjeto;
     }
+    public LinkedList <Atividades> getTasks(){
+
+        return this.tasks;
+    }
 
 
     //######################## MÉTODOS SETTERS #############################
@@ -108,5 +112,9 @@ public class Projeto {
     }
     public void setNomeProjeto(String nomeProjeto){
         this.nomeProjeto = nomeProjeto;
+    }
+    public void setTasks(Atividades task){
+
+        this.tasks.add(task);
     }
 }

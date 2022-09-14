@@ -6,6 +6,7 @@ import Classes.Atividades;
 import Classes.Projeto;
 import Classes.Ruler;
 import Classes.Usuarios;
+import Funcionalidades.AlterarStatus;
 import Funcionalidades.Associar;
 import Funcionalidades.Criar;
 import Funcionalidades.Editar;
@@ -81,9 +82,9 @@ public class Software {
                             case 2:
 
                                 Atividades atividade = new Atividades();
-                                if(atividade != null){
+                                atividade = criacao.criarAtividade(login);
 
-                                    atividade = criacao.criarAtividade(login);
+                                if(atividade != null){
 
                                     atividade.SetID(atividades.size());
 
@@ -132,23 +133,29 @@ public class Software {
                         switch(oP){
 
                             case 1:
-                                if(login.type == Ruler.ADMIN && login != null){
 
-                                    projetos = edicao.editarProjeto(projetos);
-                                }
-                                else{
+                                try{
+                                    if(login.type == Ruler.ADMIN && login != null){
+
+                                        projetos = edicao.editarProjeto(projetos);
+                                    }
+                                }catch(Exception y){
+
                                     System.out.println("É nescessário está logado em uma conta de Acess level de Admin");
                                 }
+                               
                                 break;
                             case 2:
 
+                            try{
                                 if(login.type == Ruler.ADMIN && login != null){
 
                                     atividades = edicao.editarAtividades(atividades);
                                 }
-                                else{
-                                    System.out.println("É nescessário está logado em uma conta de Acess level de Admin");
-                                }
+                            }catch(Exception y){
+
+                                System.out.println("É nescessário está logado em uma conta de Acess level de Admin");
+                            }
                                 break;
                             default:
 
@@ -158,43 +165,98 @@ public class Software {
 
                         break;
                     case 3:
- 
-                        if(login.type != Ruler.ADMIN){
+                        try{
+                            if(login.type != Ruler.ADMIN){
 
-                            System.out.println("Para associar é nescessário está logado em uma conta de Acess level Admin");
-                            break;
+                                System.out.println("Para associar é nescessário está logado em uma conta de Acess level Admin");
+                                break;
+                            }
+                            menu.printAssociar();
+                            Associar function = new Associar();
+    
+                            int option = tecladoScanner.nextInt();
+                            tecladoScanner.nextLine();
+    
+                            switch(option){
+    
+                                case 1:
+    
+                                    projetos = function.usersToProject(projetos, run.users);
+    
+    
+                                    break;
+                                case 2:
+                                    projetos = function.taskToProject(projetos, atividades);
+    
+                                    break;
+                                case 3:
+                                    atividades = function.userTotask(atividades, run.users);
+                                    break;
                         }
-                        menu.printAssociar();
-                        Associar function = new Associar();
+                    }catch(Exception y){
 
-                        int option = tecladoScanner.nextInt();
-                        tecladoScanner.nextLine();
-
-                        switch(option){
-
-                            case 1:
-
-                                projetos = function.usersToProject(projetos, run.users);
-
-
-                                break;
-                            case 2:
-
-                                break;
-                            case 3:
-
-                                break;
+                            System.out.println("!------- ----------------       ERROR !     ----------------\nUsario não conectado, por favor faça login");
                         }
 
                         break;
                     case 4:
 
-                        break;
-                    case 5:
+                        try{
 
+                            if(login.type != Ruler.ADMIN){
+
+                                System.out.println("Para alterar o status é nescessário está logado em uma conta de Acess level Admin");
+                                break;
+                            }
+                            else{
+
+                                AlterarStatus status = new AlterarStatus();
+
+                                projetos = status.mudarStatus(projetos, login);
+                            }
+                        }catch(Exception y){
+
+                            System.out.println("!------- ----------------       ERROR !     ----------------\nUsario não conectado, por favor faça login");
+                        }
+
+                        break;
+                        
+                    case 5:
+                        int op;
+                        menu.printListar();
+                        Listar func = new Listar();
+
+                         op = tecladoScanner.nextInt();
+                         tecladoScanner.nextLine();
+
+                        switch(op){
+
+                            case 1:
+
+                                func.listarProjetos(projetos);
+                                break;
+                            case 2:
+                                func.listarAtividades(atividades);
+                                break;
+                            case 3:
+                                func.listarUsuarios(run.users);
+                                break;
+                        }
                         break;
                     case 6:
+                        System.out.println("Digite o nome do projeto para imprimir seu relatorio: ");
+                        tecladoScanner.nextLine();
+                        String nome = tecladoScanner.nextLine();
+                        Listar rel = new Listar();
 
+                        for(Projeto projeto : projetos){
+
+                            if(projeto.getNomeProjeto().equals(nome)){
+
+                                rel.relatorio(projeto);
+                                break;
+                            }
+                        }
                         break;
                     case 7:
 
@@ -212,34 +274,12 @@ public class Software {
                     case 10:
 
                         break;
-
-                    case 11:
-
-                        int op;
-                        menu.printListar();
-                        Listar func = new Listar();
-
-                         op = tecladoScanner.nextInt();
-
-                        switch(op){
-
-                            case 1:
-
-                                func.listarProjetos(projetos);
-                                break;
-                            case 2:
-                                func.listarAtividades(atividades);
-                                break;
-                            case 3:
-                                func.listarUsuarios(run.users);
-                                break;
-                            }
-                        break;
                         default:
                             System.out.println("!----------- ERRO, DIGITE UMA OPÇÃO VÁLIDA ---------------!");
                             break;
                     }
-            }
+                
+                }
             catch(Exception y){
 
                 System.out.println(y);

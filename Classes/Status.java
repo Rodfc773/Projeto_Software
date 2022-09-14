@@ -1,6 +1,6 @@
 package Classes;
 
 public enum Status {
-    CRIADO, INICIADO,  ANDAMENTO, FINALIZADO;
+    CRIADO, INICIADO, ANDAMENTO, FINALIZADO;
 }
 

@@ -91,7 +91,7 @@ public class Runner {
         String tipo = tecladoScanner.nextLine();
         user.setTipo(tipo);
 
-        if(tipo.equals("Professor") || tipo.equals("Coordenador")){
+        if(tipo.equals("Professor") || tipo.equals("Pesquisador")){
 
             user.type = Ruler.ADMIN;
         }
