@@ -11,6 +11,7 @@ import Funcionalidades.Associar;
 import Funcionalidades.Criar;
 import Funcionalidades.Editar;
 import Funcionalidades.Listar;
+import Funcionalidades.Payment;
 import Funcionalidades.Retirar;
 import Funcionalidades.Runner;
 import Funcionalidades.Sistema;
@@ -271,7 +272,20 @@ public class Software {
 
                         break;
                     case 8:
+                            Payment pagamento = new Payment();
 
+                            try{
+                                if(login != null && login.type == Ruler.ADMIN){
+
+                                    pagamento.paymentBolsa(run.users, tecladoScanner);
+                                }
+                                else{
+                                    System.out.println("O usuario que irá realizar o pagamento da bolsa tem que ter nivel de acesso de admin");
+                                }
+                            }catch(Exception y){
+
+                                System.out.println("Não existe nenhuma conta conectada");
+                            }
                         break;
                     case 9:
 
