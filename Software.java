@@ -280,7 +280,7 @@ public class Software {
                                     pagamento.paymentBolsa(run.users, tecladoScanner);
                                 }
                                 else{
-                                    System.out.println("O usuario que irá realizar o pagamento da bolsa tem que ter nivel de acesso de admin");
+                                    System.out.println("O usuario que irá realizar o pagamento da bolsa tem que ter nivel de acesso de admin9");
                                 }
                             }catch(Exception y){
 

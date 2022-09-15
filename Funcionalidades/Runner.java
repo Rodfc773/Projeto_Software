@@ -109,6 +109,7 @@ public class Runner {
 
         menuSistema.printCriarUsuarioPossuiBolsa();
         int opcao = tecladoScanner.nextInt();
+        tecladoScanner.nextLine();
 
         switch(opcao){
 
@@ -118,6 +119,7 @@ public class Runner {
                 menuSistema.printCriarBolsa();
                 double bolsa = tecladoScanner.nextDouble();
                 user.setBolsa(bolsa);
+                tecladoScanner.nextLine();
 
                 menuSistema.printCriarUsuarioPeriodoBolsa();
                 String periodoBolsa = tecladoScanner.nextLine();
@@ -215,9 +217,10 @@ public class Runner {
                             user.setPossuiBolsa(true);
                             System.out.println("Digite o valor da bolsa: ");
                             Double valorBolsa = scan.nextDouble();
-                            scan.nextLine();
+                            
 
                             System.out.println("Digite o período da bolsa: ");
+                            
                             String periodoBolsa = scan.nextLine();
 
                             user.setBolsa(valorBolsa);
