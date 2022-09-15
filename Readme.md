@@ -65,7 +65,7 @@
 
 ### 8. Sistema de pagamento de bolsas:
 
-* A função ainda não foi desenvolvida;
+*  Para realizar o pagamento de bolsa de um aluno é nescessario está logado e em uma conta do nivel de acesso Admin;
 
     
 ### 9. Login:
