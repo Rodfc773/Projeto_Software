@@ -5,7 +5,7 @@
 
 ### Como rodar a aplicação: 
 
-  * __Para rodar a maior parte das funcionalidades vai ser nescessário estar logado na conta inicial, a conta Administrador, caso não seja feito o login, as principaus funcionalidades emitiram um erro__
+  * __Para rodar a maior parte das funcionalidades vai ser nescessário estar logado na conta inicial, a conta Administrador, caso não seja feito o login, as principais funcionalidades emitiram um erro__
 
   * Login da conta admin = Admin@gmail.com
   * Senha da conta  admin = Adminprojetos 
@@ -22,6 +22,8 @@
 * Para criação de projeto/atividades é nescessário a criação de uma conta/login de uma conta do tipo Professor ou Pesquisador;
 
 * No caso, ao criar um projeto, conta do tipo professor/pesquisador será alocada como coordenador desse projeto;
+
+* É nescessario que a conta do professor/pesquisador tenha em seu tipo "Professor" ou "Pesquisador" com a primeira letar maiúscula para poder ganhar nível de acesso ADMIN;
 
 * Ao criar  uma atividade é , será nescessário associar um responsável pela funcionalidade 3;
 
@@ -70,9 +72,11 @@
     
 ### 9. Login:
 
-    * A funcionalidade permiti o login através do email e senha;
-    * Após o sucesso de login, o usuario ficará na conta logada até que se faça login denovo;
-    * A opção de deslogar ainda está sendo feita;
+* A funcionalidade permiti o login através do email e senha;
+
+* Após o sucesso de login, o usuario ficará na conta logada até que se faça login denovo;
+
+* A opção de deslogar ainda está sendo feita;
 
 ### 10. Undo/Redo:
 
