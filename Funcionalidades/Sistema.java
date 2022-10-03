@@ -97,9 +97,8 @@ public class Sistema {
         System.out.println("+-----------------      1 : Nome                   -------------+");
         System.out.println("+-----------------      2 : Tipo                   -------------+");
         System.out.println("+-----------------      3 : Bolsa                  -------------+");
-        System.out.println("+-----------------      4 : Periodo da bolsa       -------------+");
-        System.out.println("+-----------------      5 : Email                  -------------+");
-        System.out.println("+-----------------      6 : Senha                  -------------+");
+        System.out.println("+-----------------      4 : Email                  -------------+");
+        System.out.println("+-----------------      5 : Senha                  -------------+");
 
 
 
@@ -125,11 +124,11 @@ public class Sistema {
     }
     public void printCriarProjetoDataInicial(){
 
-        System.out.println("Digite a data a inicial: ");
+        System.out.println("Digite a data a inicial(ex: 15-08-2001 14:30): ");
     }
     public void printCriarProjetoDataFinal(){
 
-        System.out.println("Digite a data de término do projeto: ");
+        System.out.println("Digite a data de término do projeto(ex: 15-08-2001 14:30): ");
     }
     public void printCriarProjetoCoordenador(){
 
@@ -176,11 +175,11 @@ public class Sistema {
     }
     public void printCriarAtividadeDataInicial(){
 
-        System.out.println("Informe a data inicial da atividade: ");
+        System.out.println("Informe a data inicial da atividade(Ex: dia - mes - ano hora:minuto): ");
     }
     public void printCriarAtividadeDataFinal(){
 
-        System.out.println("Informe o prazo da atvidade: ");
+        System.out.println("Informe o prazo da atvidade(Ex: Dia - Mes - Ano Hora:Minuto): ");
     }
     public void printCriarAtividadeResponsavel(){
 

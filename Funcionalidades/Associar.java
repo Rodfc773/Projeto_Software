@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import Classes.Atividades;
+import Classes.Pessoa;
 import Classes.Projeto;
 import Classes.Usuarios;
 
@@ -19,27 +20,27 @@ public class Associar {
         System.out.println("Digite o email do usuário que queira associar: ");
         String userEmail = scan.nextLine();
 
-        Usuarios aux = new Usuarios();
+        Pessoa aux = new Pessoa();
         aux = null;
         for(Usuarios user : users){
 
             if(user.getEmail().equals(userEmail)){
-                aux = user;
+                aux = (Pessoa) user;
                 break;
             }
         }
 
         for(Projeto projeto : projetos){
 
-            if(aux == null || projetos.contains(projeto.getNomeProjeto().equals(nomeProjeto))){
+            if(aux == null || projetos.contains(projeto.getNome().equals(nomeProjeto))){
 
                 System.out.println("Não existe projeto com esse nome/Não existe usuario com esse email");
                 return projetos;
             }
-            if(projeto.getNomeProjeto().equals(nomeProjeto)){
+            if(projeto.getNome().equals(nomeProjeto)){
 
                 projeto.setProfissionais(aux);
-                System.out.println("O profissional : " +aux.getNome() + "\nDe email: " +aux.getEmail() + "\nFoi cadastrado com sucesso no projeto: "+projeto.getNomeProjeto());
+                System.out.println("O profissional : " +aux.getNome() + "\nFoi cadastrado com sucesso no projeto: "+projeto.getNome());
                 break;
             }
         }
@@ -60,7 +61,7 @@ public class Associar {
 
         for(Atividades task: tasks){
 
-            if(task.getNomeAtvd().equals(nomeAtividade)){
+            if(task.getNome().equals(nomeAtividade)){
 
                 aux = task;
                 break;
@@ -75,10 +76,10 @@ public class Associar {
 
         for(Projeto projeto : prjts){
 
-            if(projeto.getNomeProjeto().equals(nomeProjeto)){
+            if(projeto.getNome().equals(nomeProjeto)){
 
                 projeto.setTasks(aux);
-                System.out.println("A atividade : " +aux.getNomeAtvd() + "\nFoi associada com sucesso no projeto: "+projeto.getNomeProjeto());
+                System.out.println("A atividade : " +aux.getNome() + "\nFoi associada com sucesso no projeto: "+projeto.getNome());
                 break;
             }
         }
@@ -94,20 +95,20 @@ public class Associar {
         System.out.println("Digite o email do Usuario que sera associado: ");
 
         String email = scan.next();
-        Usuarios aux = null;
+        Pessoa aux = null;
 
         for(Usuarios user : users){
 
             if(user.getEmail().equals(email)){
 
-                aux = user;
+                aux = (Pessoa)user;
                 break;
             }
         }
 
         for(Atividades task : tasks){
 
-            if(task.getNomeAtvd().equals(nomeAtividade)){
+            if(task.getNome().equals(nomeAtividade)){
 
                 task.setProfissionais(aux);
 
@@ -119,7 +120,7 @@ public class Associar {
                     task.setResponsavel(aux);
                 }
 
-                System.out.println("O profissional : " +aux.getNome() + "\nDe email: " +aux.getEmail() + "\nFoi cadastrado com sucesso no projeto: "+task.getNomeAtvd());
+                System.out.println("O profissional : " +aux.getNome() + "\nDe email: " +aux.getEmail() + "\nFoi cadastrado com sucesso no projeto: "+task.getNome());
 
             }
         }

@@ -1,17 +1,19 @@
 package Funcionalidades;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 import javax.sound.midi.Soundbank;
 
 import Classes.Atividades;
+import Classes.Pessoa;
 import Classes.Projeto;
 import Classes.Usuarios;
 
 public class Editar {
 
-    public LinkedList <Projeto> editarProjeto(LinkedList<Projeto> projetos, Usuarios user){
+    public LinkedList <Projeto> editarProjeto(LinkedList<Projeto> projetos, Pessoa user){
 
         Scanner teclado = new Scanner(System.in);
         Sistema menu = new Sistema();
@@ -20,7 +22,7 @@ public class Editar {
 
         for(Projeto projeto : projetos){
 
-            if(projeto.getNomeProjeto().equals(nomeProjeto)){
+            if(projeto.getNome().equals(nomeProjeto)){
 
                 if(projeto.getCoordenador() != user){
 
@@ -44,7 +46,7 @@ public class Editar {
                         break;
                     case 2:
                         menu.printEditarProjetoPrazo();
-                        String dataFinal = teclado.nextLine();
+                        LocalDateTime dataFinal = LocalDateTime.parse(teclado.nextLine());
                         projeto.setDataFinal(dataFinal);
 
                         break;
@@ -69,7 +71,7 @@ public class Editar {
 
         for(Atividades task : atvds){
 
-            if(task.getNomeAtvd().equals(nomeAtividade)){
+            if(task.getNome().equals(nomeAtividade)){
 
                 menu.printEditarAtividades();
 
@@ -86,7 +88,7 @@ public class Editar {
                         break;
                     case 2:
                         menu.printEditarAtividadesPrazo();
-                        String prazo = teclado.nextLine();
+                        LocalDateTime prazo = LocalDateTime.parse(teclado.nextLine());
                         task.setDataFinal(prazo);
 
                         break;

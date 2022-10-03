@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import Classes.Atividades;
 import Classes.Projeto;
-import Classes.Usuarios;
 
 public class Retirar {
     public LinkedList<Projeto> retirarProjetos(LinkedList<Projeto> projetos){
@@ -25,7 +24,7 @@ public class Retirar {
 
         for(Projeto projeto : projetos){
 
-            if(projeto.getNomeProjeto().equals(nomeProjeto)){
+            if(projeto.getNome().equals(nomeProjeto)){
 
                 System.out.println("!-------------          Projeto Removido com sucesso            -----------!\n\n");
                 projetos.remove(projeto);
@@ -55,7 +54,7 @@ public class Retirar {
 
             for(Atividades atividade : atividades ){
 
-                if(atividade.getNomeAtvd().equals(nomeAtividade)){
+                if(atividade.getNome().equals(nomeAtividade)){
 
                     atividades.remove(atividade);
                     System.out.println("!---- -------------       Atividade removida com sucesso        ------------!\n\n");

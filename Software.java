@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 
 import Classes.Atividades;
+import Classes.Pessoa;
 import Classes.Projeto;
 import Classes.Ruler;
 import Classes.Usuarios;
@@ -21,9 +22,8 @@ public class Software {
     public static void main(String[] args) {
 
        Sistema menu = new Sistema();
-       Usuarios admin = new Usuarios();
-       admin.setID(1);
-       Usuarios login = new Usuarios();
+       Usuarios admin = new Pessoa();
+       Usuarios login = new Pessoa();
        login = null;
 
 
@@ -66,11 +66,10 @@ public class Software {
 
                                 Projeto projeto = new Projeto();
 
-                               projeto = criacao.criarProjetos(login);
+                               projeto = criacao.criarProjetos((Pessoa)login);
 
                                 if(projeto != null){
 
-                                    projeto.setID(projetos.size());
                                     projetos.add(projeto);
 
                                 }
@@ -87,8 +86,6 @@ public class Software {
 
                                 if(atividade != null){
 
-                                    atividade.SetID(atividades.size());
-
                                     atividades.add(atividade);
 
                                }
@@ -103,7 +100,7 @@ public class Software {
                                 break;
                             case  4:
 
-                                if(login.type == Ruler.ADMIN && login != null){
+                                if((login.getAcessLevel() == Ruler.Coordenador || login.getAcessLevel() == Ruler.Admin) && login != null){
                                     projetos =  remover.retirarProjetos(projetos);
                                 }
                                 else{
@@ -112,7 +109,7 @@ public class Software {
                                 break;
                             case 5:
 
-                                if(login.type == Ruler.ADMIN && login != null){
+                                if((login.getAcessLevel() == Ruler.Admin || login.getAcessLevel() == Ruler.Coordenador) && login != null){
                                     atividades = remover.retirarAtividades(atividades);
                                 }
                                 else{
@@ -136,9 +133,9 @@ public class Software {
                             case 1:
 
                                 try{
-                                    if(login.type == Ruler.ADMIN && login != null){
+                                    if((login.getAcessLevel() == Ruler.Admin || login.getAcessLevel() == Ruler.Coordenador) && login != null){
 
-                                        projetos = edicao.editarProjeto(projetos, login);
+                                        projetos = edicao.editarProjeto(projetos, (Pessoa)login);
                                     }
                                 }catch(Exception y){
 
@@ -149,7 +146,7 @@ public class Software {
                             case 2:
 
                             try{
-                                if(login.type == Ruler.ADMIN && login != null){
+                                if((login.getAcessLevel().equals(Ruler.Admin) || login.getAcessLevel().equals(Ruler.Coordenador)) && login != null){
 
                                     atividades = edicao.editarAtividades(atividades);
                                 }
@@ -167,7 +164,7 @@ public class Software {
                         break;
                     case 3:
                         try{
-                            if(login.type != Ruler.ADMIN){
+                            if(login.getAcessLevel().equals(Ruler.Aluno)){
 
                                 System.out.println("Para associar é nescessário está logado em uma conta de Acess level Admin");
                                 break;
@@ -204,9 +201,9 @@ public class Software {
 
                         try{
 
-                            if(login.type != Ruler.ADMIN){
+                            if(!(login.getAcessLevel().equals(Ruler.Coordenador))){
 
-                                System.out.println("Para alterar o status é nescessário está logado em uma conta de Acess level Admin");
+                                System.out.println("Para alterar o status é nescessário está logado em uma conta de Acess level Coordenador");
                                 break;
                             }
                             else{
@@ -223,10 +220,9 @@ public class Software {
                         break;
                         
                     case 5:
-                        try{
-                            if(login != null){
+                    
 
-                                int op;
+                        int op;
                         menu.printListar();
                         Listar func = new Listar();
 
@@ -246,12 +242,6 @@ public class Software {
                                 func.listarUsuarios(run.users);
                                 break;
                             }
-                        }
-                        }catch(Exception y){
-
-                            System.out.println("!------------   ERROR ----------------!");
-                            System.out.println("!------------   Não tem nenhuma conta logado --------------!\n");
-                        }
                         break;
                     case 6:
                         System.out.println("Digite o nome do projeto para imprimir seu relatorio: ");
@@ -261,7 +251,7 @@ public class Software {
 
                         for(Projeto projeto : projetos){
 
-                            if(projeto.getNomeProjeto().equals(nome)){
+                            if(projeto.getNome().equals(nome)){
 
                                 rel.relatorio(projeto);
                                 break;
@@ -275,7 +265,7 @@ public class Software {
                             Payment pagamento = new Payment();
 
                             try{
-                                if(login != null && login.type == Ruler.ADMIN){
+                                if(login != null && (login.getAcessLevel().equals(Ruler.Admin) || login.getAcessLevel().equals(Ruler.Coordenador))){
 
                                     pagamento.paymentBolsa(run.users, tecladoScanner);
                                 }

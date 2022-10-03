@@ -17,7 +17,7 @@ public class AlterarStatus {
         String nome = scan.nextLine();
         for (Projeto projeto : projetos){
 
-            if(projeto.getNomeProjeto().equals(nome)){
+            if(projeto.getNome().equals(nome)){
 
                 if(projeto.getCoordenador() != user){
 
@@ -44,7 +44,7 @@ public class AlterarStatus {
                         break;
 
                     }
-                    if(projeto.status == Status.ANDAMENTO) {
+                    if(projeto.status == Status.EM_ANDAMENTO) {
                         System.out.println("!!!! Status alterado com Sucesso !!!");
 
                         projeto.setStatusFinalizado();

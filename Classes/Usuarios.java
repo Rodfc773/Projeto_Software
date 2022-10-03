@@ -1,92 +1,45 @@
 package Classes;
 
-public class Usuarios {
-    private int id;
-    private String nome;
-    private String tipo;
-    //Variavel para identificar qual o tipo de usuario: aluno de graduação, mestrado e etc......
-    private Boolean possuiBolsa;
-    private Double bolsa;
-    private String periodoBolsa;
-    private String email;
-    private String password;
-    public Ruler type = Ruler.DEFAULT;
+import Interface.Cadastro;
+
+public class Usuarios implements Cadastro{
+    protected String email;
+    protected String password;
+    protected Ruler acceslevel;
+
+
     public Usuarios(){
 
-        this.id = 0;
-        this.nome = "Admin";
-        this.tipo = "Administrador";
-        this.possuiBolsa = false;
-        this.bolsa = 0.0;
-        this.periodoBolsa = "None";
         this.email = "Admin@gmail.com";
-        this.password = "Adminprojetos";
-        this.type = Ruler.ADMIN;
-    }
-
-    public int getID(){
-
-        return this.id;
+        this.password = "admin";
+        this.acceslevel = Ruler.Admin;
 
     }
-    public String getNome(){
+    public Usuarios(String email, String password, String tipo){
 
-        return this.nome;
+        setAcceslevel(tipo);
+        setEmail(email);
+        setPassword(password);
     }
-    public String getTipo(){
-
-        return this.tipo;
-    }
-    public Double getBolsa(){
-
-        return this.bolsa;
-    }
-    public String getPeriodoBolsa(){
-
-        return this.periodoBolsa;
-    }
+    @Override
     public String getPassword(){
 
         return this.password;
     }
+    @Override
     public String getEmail(){
 
         return this.email;
     }
-    public Boolean getPossuiBolsa()
-    {
-        return this.possuiBolsa;
-    }
-    public Enum getAcessLevel(){
+    @Override
+    public Enum<Ruler> getAcessLevel(){
 
-        return this.type;
+        return this.acceslevel;
     }
 
 
     //################ COMEÇO DOS METÓDOS SETTERS ################################
 
-
-    public void setID(int id){
-
-        this.id = id;
-    }
-
-    public void setNome(String nome){
-
-        this.nome = nome;
-    }
-    public void setBolsa(double bolsa){
-
-        this.bolsa = bolsa;
-    }
-    public void setPeriodoBolsa(String periodoBolsa){
-
-        this.periodoBolsa = periodoBolsa;
-    }
-    public void setTipo(String tipo){
-
-        this.tipo = tipo;
-    }
     public void setPassword(String password){
 
         this.password = password;
@@ -96,8 +49,21 @@ public class Usuarios {
         if(!email.contains("@")) return;
         this.email = email;
     }
-    public void setPossuiBolsa(Boolean possuiBolsa){
+    public void setAcceslevel(String tipo){
 
-        this.possuiBolsa = possuiBolsa;
+        if(tipo.equals("Professor")|| tipo.equals("Pesquisador")){
+
+            this.acceslevel = Ruler.Coordenador;
+        }
+        else{
+
+            this.acceslevel = Ruler.Aluno;
+        }
+    }
+    @Override
+
+    public String toString(){
+
+        return "Email: " + this.getEmail() + "\nAcessLevel: " + this.getAcessLevel();
     }
 }

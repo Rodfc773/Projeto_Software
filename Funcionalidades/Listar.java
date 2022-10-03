@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import Classes.Atividades;
+import Classes.Pessoa;
 import Classes.Projeto;
 import Classes.Usuarios;
 
@@ -27,20 +28,7 @@ public class Listar {
             for(Projeto projeto : projetos){
                 System.out.println("!---------------------      PROJETOS -------------------!");
                 System.out.println("!-------------------------------------------------------!");
-                System.out.println("ID: " +projeto.getId());
-                System.out.println("Nome do projeto: " +projeto.getNomeProjeto());
-                System.out.println("Status: " +projeto.getStatus());
-                System.out.println("Descrição: " +projeto.getDescricao());
-                System.out.println("Data de inicio: " +projeto.getDataInicio());
-                System.out.println("Data de termino: " +projeto.getDataTermino());
-
-                try{
-                    System.out.println("Coordenador: " +projeto.getCoordenadorNome());
-
-                }catch(Exception y){
-
-                    System.out.println("Não existe coordenador para o projeto ainda");
-                }
+                System.out.println(projeto.toString());
                 System.out.println("!-------------------------------------------------------!");
             }
         }
@@ -51,23 +39,10 @@ public class Listar {
 
             for(Projeto projeto : projetos){
 
-                if(projeto.getNomeProjeto().equals(nome)){
+                if(projeto.getNome().equals(nome)){
                     System.out.println("!---------------------      PROJETO      -------------------!");
                     System.out.println("!-------------------------------------------------------!");
-                    System.out.println("ID: " +projeto.getId());
-                    System.out.println("Nome do projeto: " +projeto.getNomeProjeto());
-                    System.out.println("Status: " +projeto.getStatus());
-                    System.out.println("Descrição: " +projeto.getDescricao());
-                    System.out.println("Data de inicio: " +projeto.getDataInicio());
-                    System.out.println("Data de termino: " +projeto.getDataTermino());
-
-                    try{
-                        System.out.println("Coordenador: " +projeto.getCoordenadorNome());
-
-                    }catch(Exception y){
-
-                        System.out.println("Não existe coordenador para o projeto ainda");
-                    }
+                    System.out.println(projeto.toString());
                     System.out.println("!-------------------------------------------------------!");
 
                     break;
@@ -83,12 +58,8 @@ public class Listar {
         for(Usuarios user : users){
 
             System.out.println("!---------------------------------------------------------!\n");
-
-            System.out.println("ID: " +user.getID());
-            System.out.println("Nome: " +user.getNome());
-            System.out.println("Tipo: " +user.getTipo());
-            System.out.println("Nível de acesso: " +user.getAcessLevel());
-            System.out.println("Email: "+user.getEmail());
+            System.out.println(user.toString());
+            
         }
     }
 
@@ -99,18 +70,7 @@ public class Listar {
         System.out.println("!@--------------    ATIVIDADES CADASTRADAS  --------------@!");
         for(Atividades atvd : atividades){
             System.out.println("!-------------------------------------------------------!");
-            System.out.println("ID: " +atvd.getID());
-            System.out.println("Nome da atividade : " +atvd.getNomeAtvd());
-            System.out.println("Descrição: " +atvd.getDescricao());
-            System.out.println("Prazo: " +atvd.getDataFim());
-            
-            try{
-                System.out.println("Responsavél: " +atvd.getName());
-
-            }catch(Exception y){
-
-                System.out.println("Não existem ainda responsável pela atividade");
-            }
+            System.out.println(atvd.toString());
 
         }
     }
@@ -125,54 +85,21 @@ public class Listar {
         }
             System.out.println("!---------------------      RELATORIO DO PROJETO     -------------------!");
             System.out.println("!-------------------------------------------------------!");
-            System.out.println("ID: " +projeto.getId());
-            System.out.println("Nome do projeto: " +projeto.getNomeProjeto());
-            System.out.println("Status: " +projeto.getStatus());
-            System.out.println("Descrição: " +projeto.getDescricao());
-            System.out.println("Data de inicio: " +projeto.getDataInicio());
-            System.out.println("Data de termino: " +projeto.getDataTermino());
-            
-            try{
-                System.out.println("Coordenador: " +projeto.getCoordenadorNome());
-
-            }catch(Exception y){
-
-                System.out.println("Não existe coordenador para o projeto ainda");
-            }
+            System.out.println(projeto.toString());
             System.out.println("!-------------------------------------------------------!");
-            try{
-                System.out.println("!---------------------      PROJETO : " +projeto.getNomeProjeto() + "   -------------------!");
-                listarUsuarios(projeto.getProfissionais());
-            }catch(Exception y){
-
-                System.out.println("Não existem usuarios associados a esse projeto");
-            }
+            System.out.println("!---------------------      PROJETO : " +projeto.getNome() + "   -------------------!");
             System.out.println("!-------------------------------------------------------!");
-            try{
-                listarAtividades(projeto.getTasks());
-            }catch(Exception y){
-
-                System.out.println("Não existem Atividades associadas a esse projeto");
-            }
+            listarAtividades(projeto.getTasks());
+            listarPessoas(projeto.getProfissionais(),projeto.getNome());
 
 
 
     }
     public void listarAtividade(Atividades atvd){
 
-            System.out.println("!-----------------      ATVIDADE :" +atvd.getNomeAtvd() + "     ------------------------!");
+            System.out.println("!-----------------      ATVIDADE :" +atvd.getNome() + "     ------------------------!");
             System.out.println("!-------------------------------------------------------!");
-            System.out.println("ID: " +atvd.getID());
-            System.out.println("Nome da atividade : " +atvd.getNomeAtvd());
-            System.out.println("Descrição: " +atvd.getDescricao());
-            System.out.println("Prazo: " +atvd.getDataFim());
-            try{
-                System.out.println("Responsavél: " +atvd.getName());
-
-            }catch(Exception y){
-
-                System.out.println("Não existem ainda responsável pela atividade");
-            }
+            System.out.println(atvd.toString());
     }
 
     public void listarUser(Usuarios user){
@@ -181,75 +108,28 @@ public class Listar {
 
 
         System.out.println("!---------------------------------------------------------!\n");
-
-        System.out.println("ID: " +user.getID());
-        System.out.println("Nome: " +user.getNome());
-        System.out.println("Tipo: " +user.getTipo());
-        System.out.println("Nível de acesso: " +user.getAcessLevel());
-        System.out.println("Email: "+user.getEmail());
-        System.out.println("Valor bolsa: " +user.getBolsa());
+        System.out.println(user.toString());
     }
 
     public void listarprojeto(Projeto projeto){
 
-            System.out.println("!---------------------      RPROJETO     -------------------!");
+            System.out.println("!---------------------      PROJETO     -------------------!");
             System.out.println("!-------------------------------------------------------!");
-            System.out.println("ID: " +projeto.getId());
-            System.out.println("Nome do projeto: " +projeto.getNomeProjeto());
-            System.out.println("Status: " +projeto.getStatus());
-            System.out.println("Descrição: " +projeto.getDescricao());
-            System.out.println("Data de inicio: " +projeto.getDataInicio());
-            System.out.println("Data de termino: " +projeto.getDataTermino());
-            
-            try{
-                System.out.println("Coordenador: " +projeto.getCoordenadorNome());
-
-            }catch(Exception y){
-
-                System.out.println("Não existe coordenador para o projeto ainda");
-            }
+            System.out.println(projeto.toString());
             System.out.println("!-------------------------------------------------------!");
     }
 
-}
 
-/*try {
-            Thread.sleep(1);     // Espera 1 segundo para ver a mágica acontecer
-            new ProcessBuilder("clear").inheritIO().start().waitFor();      // Para linux (acho que para mac também)
-        } catch(Exception e) {
-            e.printStackTrace();
+    public void listarPessoas(LinkedList<Pessoa> cadastrado, String nome){
+
+
+        System.out.println("!--------------- PROFISSIONAIS ------------------------!");
+        System.out.println("!--------------- PROJETO : " + nome + "------------------------!");
+        for(Pessoa cadastro : cadastrado){
+
+            System.out.println(cadastro.toString());
         }
-            System.out.println("!---------------------      RELATORIO DO PROJETO     -------------------!");
-            System.out.println("!-------------------------------------------------------!");
-            System.out.println("ID: " +projeto.getId());
-            System.out.println("Nome do projeto: " +projeto.getNomeProjeto());
-            System.out.println("Status: " +projeto.getStatus());
-            System.out.println("Descrição: " +projeto.getDescricao());
-            System.out.println("Data de inicio: " +projeto.getDataInicio());
-            System.out.println("Data de termino: " +projeto.getDataTermino());
-            
-            try{
-                System.out.println("Coordenador: " +projeto.getCoordenadorNome());
-
-            }catch(Exception y){
-
-                System.out.println("Não existe coordenador para o projeto ainda");
-            }
-            System.out.println("!-------------------------------------------------------!");
-            try{
-                listarUsuarios(projeto.getProfissionais());
-            }catch(Exception y){
-
-                System.out.println("Não existem usuarios associados a esse projeto");
-            }
-            System.out.println("!-------------------------------------------------------!");
-            try{
-                listarAtividades(projeto.getTasks());
-            }catch(Exception y){
-
-                System.out.println("Não existem Atividades associadas a esse projeto");
-            }
 
 
-
-        } */
+    }
+}
