@@ -74,7 +74,7 @@ public class Criar {
                 LocalDateTime dataPrazo = LocalDateTime.parse(teclaScanner.nextLine(), formatter);
                 menu.printCriarAtividadeResponsavel();
 
-                Atividades task = new Atividades(nomeAtividade, descricao, dataInicio, dataPrazo, null);
+                Atividades task = new Atividades(nomeAtividade, descricao, dataInicial, dataPrazo, null);
                 return task;
 
 

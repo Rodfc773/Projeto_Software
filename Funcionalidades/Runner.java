@@ -21,59 +21,65 @@ public class Runner {
     private  void run(Usuarios login){
         Sistema menu = new Sistema();
         Scanner scan = new Scanner(System.in);
-        this.section = login;
 
         while(running){
 
-            if(this.section == null || this.section.getAcessLevel().equals(Ruler.Aluno)){
+            try{
+                if(login.getAcessLevel().equals(Ruler.Aluno)){
 
-                System.out.println("!----  Error  ------!\nPara Cadastrar usuarios é nescessario está em uma conta do tipo Administrador");
-                break;
-            }
-            System.out.println(this.section != null ? "Seção OK" : "Por favor faça login pra continuar");
-            System.out.println("!---------------  1 - Cria Usuário --------------!\n!------------- 0 - encerrar o sistema ---------------!\n");
-            if(this.section != null && (this.section.getAcessLevel().equals(Ruler.Admin) || this.section.getAcessLevel().equals(Ruler.Coordenador))) System.out.println("!----------------- 2 - Opção de administrador ------------!" );
-
-            int op = scan.nextInt();
-            scan.nextLine();
-
-            switch (op){
-
-                case 1:
-                    if(this.section == null || this.section.getAcessLevel().equals(Ruler.Aluno)){
-                        System.out.println("Por favor logue em uma conta do tipo administrador para usar a função");
-                        break;
-                    }
-                    else{
-                        users.add(createNewUser());
-                    }
-
+                    System.out.println("!----  Error  ------!\nPara Cadastrar usuarios é nescessario está em uma conta do tipo Administrador");
                     break;
-                    case 2:
+                }
+                
+                this.section = login;
+                System.out.println(this.section != null ? "Seção OK" : "Por favor faça login pra continuar");
+                System.out.println("!---------------  1 - Cria Usuário --------------!\n!------------- 0 - encerrar o sistema ---------------!\n");
+                if(this.section != null && (this.section.getAcessLevel().equals(Ruler.Admin) || this.section.getAcessLevel().equals(Ruler.Coordenador))) System.out.println("!----------------- 2 - Opção de administrador ------------!" );
 
-                        System.out.println("!----------- FUNCIONALIDADES DE ADMINISTRADOR -----------!");
-                        System.out.println("!-----------        1 - Remover                 -----------!");
-                        System.out.println("!-----------        2 - Editar informações      -----------!");
+                int op = scan.nextInt();
+                scan.nextLine();
 
-                        int op2 = scan.nextInt();
-                        scan.nextLine();
+                switch (op){
 
-                        switch(op2){
-
-                            case 1: 
-                                remover();
-                                break;
-                            case 2:
-                                editar();
-                                break;
-                            default:
-                                break;
+                    case 1:
+                        if(this.section == null || this.section.getAcessLevel().equals(Ruler.Aluno)){
+                            System.out.println("Por favor logue em uma conta do tipo administrador para usar a função");
+                            break;
                         }
-                case 0:
-                    running = false;
-                    break;
-                default:
-                    break;
+                        else{
+                            users.add(createNewUser());
+                        }
+
+                        break;
+                        case 2:
+
+                            System.out.println("!----------- FUNCIONALIDADES DE ADMINISTRADOR -----------!");
+                            System.out.println("!-----------        1 - Remover                 -----------!");
+                            System.out.println("!-----------        2 - Editar informações      -----------!");
+
+                            int op2 = scan.nextInt();
+                            scan.nextLine();
+
+                            switch(op2){
+
+                                case 1: 
+                                    remover();
+                                    break;
+                                case 2:
+                                    editar();
+                                    break;
+                                default:
+                                    break;
+                            }
+                    case 0:
+                        running = false;
+                        break;
+                    default:
+                        break;
+                }
+            }catch(Exception e){
+
+                System.out.println("Não existe nenhuma conta logada, por favor faça login primeiro");
             }
         }
     }
@@ -175,34 +181,35 @@ public class Runner {
         }
        
     }
-    public  Usuarios login(){
+    public  Usuarios login(Usuarios login){
 
-        if(users.isEmpty()){
-
-            System.out.println("Não tem nenhum usuarios cadastrados, por favor cadastre um");
-            return null;
-        }
-
-        Sistema menu = new Sistema();
-        Scanner scan = new Scanner(System.in);
-        menu.printLogin();
-        String email = scan.nextLine();
-
-        System.out.println("Digite a senha: ");
-        String password = scan.nextLine();
-
-        for (Usuarios user : users){
-
-            if(!(user.getEmail().equals(email) && user.getPassword().equals(password))){
-
-                this.section = null;
-                continue;
+            if(login != null){
+                System.out.println("Bye bye " + login.getEmail());
+                return null;
             }
 
-            this.section = user;
-            System.out.println("Seja bem vindo: " +this.section.getEmail());
-            break;
+            Sistema menu = new Sistema();
+            Scanner scan = new Scanner(System.in);
+            menu.printLogin();
+            String email = scan.nextLine();
+
+            System.out.println("Digite a senha: ");
+            String password = scan.nextLine();
+
+            for (Usuarios user : users){
+
+                if((user.getEmail().equals(email) && user.getPassword().equals(password))){
+
+                    this.section = user;
+                    System.out.println("Seja bem vindo: " +this.section.getEmail());
+                    break;
+                }
+                else{
+                    this.section = null;
+                }
+
+            }
+            System.out.println(login == null ? "Nenhum Usuário encontrado com esse login" : "Login bem sucedido!"); 
+            return this.section;
         }
-        return this.section;
-    }
 }

@@ -22,6 +22,26 @@ public class Sistema {
 
 
     }
+    public void printSistemaLogin(){
+
+        System.out.println("\n\n\n!-------------- SISTEMA DE GERENCIAMENTO DE PROJETOS ---------------!");
+        System.out.println("!--------------                                      ---------------!");
+        System.out.println("!--------------      FUNCIONALIDADES DO SISTEMA      ---------------!");
+        System.out.println("!-------------------------------------------------------------------!");
+        System.out.println("!--------------      1 : Criar/Retirar               ---------------!");
+        System.out.println("!--------------      2 : Editar informações          ---------------!");
+        System.out.println("!--------------      3 : Associar Projetos/Ativiades/Usuarios ------!");
+        System.out.println("!--------------      4 : Alterar status de um projeto --------------!");
+        System.out.println("!--------------      5 : Consultar/Listar            ---------------!");
+        System.out.println("!--------------      6 : Fornecer Relatório          ---------------!");
+        System.out.println("!--------------      7 : Realizar Intercâmbio        ---------------!");
+        System.out.println("!--------------      8 : Pagamento de Bolsas         ---------------!");
+        System.out.println("!--------------      9 : Logout  --------------!");
+        System.out.println("!--------------     10 : Undo/Rendo                   --------------!");
+        System.out.println("!--------------      0 : Encerrar o sistema          ---------------!");
+
+
+    }
     public void printCriar(){
 
         System.out.println("+-------------------    SISTEMA DE CRIAÇÃO /REMOVER   ------------------+");
