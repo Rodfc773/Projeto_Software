@@ -37,7 +37,12 @@ public class Software {
 
        while(true){
 
+            if(login != null){
+                menu.printSistemaLogin();
+            }
+            else{
             menu.printSistema();
+            }
 
             int opcao = tecladoScanner.nextInt();
 
@@ -278,10 +283,7 @@ public class Software {
                             }
                         break;
                     case 9:
-
-                        login =  run.login();
-
-                        System.out.println(login == null ? "Nenhum Usuário encontrado com esse login" : "Login bem sucedido!"); 
+                        login = run.login(login);
 
                         break;
                     case 10:
