@@ -24,6 +24,7 @@ public class Software {
        Sistema menu = new Sistema();
        Usuarios admin = new Pessoa();
        Usuarios login = new Pessoa();
+
        login = null;
 
 
@@ -51,7 +52,8 @@ public class Software {
 
        while(true){
             
-            menu.printSistema();
+           if(login == null) menu.printSistema();
+           else menu.printSistemaLogin();
             option = scan.nextInt();
             scan.nextLine();
 
@@ -92,7 +94,7 @@ public class Software {
             if(option == 17)software.relatorioProjeto(projetos, scan, rel);
 
             if(option == 18)software.paymentBolsa(run.users, login, pagamento, scan);
-            
+
             if(option == 19) software.login(login, run);
        }
     }
@@ -329,7 +331,13 @@ public class Software {
     }
     public Usuarios login(Usuarios login, Runner run){
 
-        return login = run.login(login);
+        if(login == null){
+
+            return run.login(login);
+        }
+        else{
+            return null;
+        }
     }
     public LinkedList<Usuarios> removeUsers(Runner run, Usuarios login, Scanner scan){
 

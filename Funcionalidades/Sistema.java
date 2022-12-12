@@ -8,17 +8,33 @@ public class Sistema {
         System.out.println("!--------------                                      ---------------!");
         System.out.println("!--------------      FUNCIONALIDADES DO SISTEMA      ---------------!");
         System.out.println("!-------------------------------------------------------------------!");
-        System.out.println("!--------------      1 : Criar/Retirar               ---------------!");
-        System.out.println("!--------------      2 : Editar informações          ---------------!");
-        System.out.println("!--------------      3 : Associar Projetos/Ativiades/Usuarios ------!");
-        System.out.println("!--------------      4 : Alterar status de um projeto --------------!");
-        System.out.println("!--------------      5 : Consultar/Listar            ---------------!");
-        System.out.println("!--------------      6 : Fornecer Relatório          ---------------!");
-        System.out.println("!--------------      7 : Realizar Intercâmbio        ---------------!");
-        System.out.println("!--------------      8 : Pagamento de Bolsas         ---------------!");
-        System.out.println("!--------------      9 : Sistema de Login de Usuários --------------!");
-        System.out.println("!--------------     10 : Undo/Rendo                   --------------!");
         System.out.println("!--------------      0 : Encerrar o sistema          ---------------!");
+        System.out.println("!--------------      1 : Criar Projetos               ---------------!");
+        System.out.println("!--------------      2 : Criar Atividades             ---------------!");
+        System.out.println("!--------------      3 : Criar Usuarios                        ------!");
+        System.out.println("!--------------      4 : Remover Projetos              --------------!");
+        System.out.println("!--------------      5 : Remover Atividades           ---------------!");
+        System.out.println("!--------------      6 : Remover Usuarios             ---------------!");
+        System.out.println("!--------------      7 : Editar Projetos              ---------------!");
+        System.out.println("!--------------      8 : Editar Atividades            ---------------!");
+        System.out.println("!--------------      9 : Editar Usuarios               --------------!");
+        System.out.println("!--------------     10 : Associar Usuarios a Projetos    ------------!");
+        System.out.println("!--------------     11 : Associar Tarefas a Projetos     ------------!");
+        System.out.println("!--------------     12 : Associar Usuarios a Atividades  ------------!");
+        System.out.println("!--------------     13 : Alterar status de um Projeto    ------------!");
+        System.out.println("!--------------     14 : Listar Projetos Cadastrados     ------------!");
+        System.out.println("!--------------     15 : Listar Atividades Cadastradas   ------------!");
+        System.out.println("!--------------     16 : Listar Usuarios Cadastrados     ------------!");
+        System.out.println("!--------------     17 : Mostrar um Relatorio            ------------!");
+        System.out.println("!--------------     18 : Pagamento de Bolsas             ------------!");
+        System.out.println("!--------------     19 : Login                           ------------!");
+
+
+
+
+
+
+
 
 
     }
@@ -28,17 +44,26 @@ public class Sistema {
         System.out.println("!--------------                                      ---------------!");
         System.out.println("!--------------      FUNCIONALIDADES DO SISTEMA      ---------------!");
         System.out.println("!-------------------------------------------------------------------!");
-        System.out.println("!--------------      1 : Criar/Retirar               ---------------!");
-        System.out.println("!--------------      2 : Editar informações          ---------------!");
-        System.out.println("!--------------      3 : Associar Projetos/Ativiades/Usuarios ------!");
-        System.out.println("!--------------      4 : Alterar status de um projeto --------------!");
-        System.out.println("!--------------      5 : Consultar/Listar            ---------------!");
-        System.out.println("!--------------      6 : Fornecer Relatório          ---------------!");
-        System.out.println("!--------------      7 : Realizar Intercâmbio        ---------------!");
-        System.out.println("!--------------      8 : Pagamento de Bolsas         ---------------!");
-        System.out.println("!--------------      9 : Logout  --------------!");
-        System.out.println("!--------------     10 : Undo/Rendo                   --------------!");
         System.out.println("!--------------      0 : Encerrar o sistema          ---------------!");
+        System.out.println("!--------------      1 : Criar Projetos               ---------------!");
+        System.out.println("!--------------      2 : Criar Atividades             ---------------!");
+        System.out.println("!--------------      3 : Criar Usuarios                        ------!");
+        System.out.println("!--------------      4 : Remover Projetos              --------------!");
+        System.out.println("!--------------      5 : Remover Atividades           ---------------!");
+        System.out.println("!--------------      6 : Remover Usuarios             ---------------!");
+        System.out.println("!--------------      7 : Editar Projetos              ---------------!");
+        System.out.println("!--------------      8 : Editar Atividades            ---------------!");
+        System.out.println("!--------------      9 : Editar Usuarios               --------------!");
+        System.out.println("!--------------     10 : Associar Usuarios a Projetos    ------------!");
+        System.out.println("!--------------     11 : Associar Tarefas a Projetos     ------------!");
+        System.out.println("!--------------     12 : Associar Usuarios a Atividades  ------------!");
+        System.out.println("!--------------     13 : Alterar status de um Projeto    ------------!");
+        System.out.println("!--------------     14 : Listar Projetos Cadastrados     ------------!");
+        System.out.println("!--------------     15 : Listar Atividades Cadastradas   ------------!");
+        System.out.println("!--------------     16 : Listar Usuarios Cadastrados     ------------!");
+        System.out.println("!--------------     17 : Mostrar um Relatorio            ------------!");
+        System.out.println("!--------------     18 : Pagamento de Bolsas             ------------!");
+        System.out.println("!--------------     19 : Logout                          ------------!");
 
 
     }
