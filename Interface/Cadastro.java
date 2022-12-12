@@ -1,6 +1,6 @@
 package Interface;
 
-import Classes.Ruler;
+import Entidades.Ruler;
 
 public interface Cadastro {
     

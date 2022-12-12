@@ -3,9 +3,9 @@ package Funcionalidades;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import Classes.Pessoa;
-import Classes.Ruler;
-import Classes.Usuarios;
+import Entidades.Pessoa;
+import Entidades.Ruler;
+import Entidades.Usuarios;
 
 public class Runner {
 
@@ -63,10 +63,10 @@ public class Runner {
                             switch(op2){
 
                                 case 1: 
-                                    remover();
+                                    remover(scan);
                                     break;
                                 case 2:
-                                    editar();
+                                    editar(scan);
                                     break;
                                 default:
                                     break;
@@ -83,7 +83,7 @@ public class Runner {
             }
         }
     }
-    private Usuarios createNewUser(){
+    public Usuarios createNewUser(){
 
         Sistema menuSistema = new Sistema();
         Scanner tecladoScanner =  new Scanner(System.in);
@@ -107,14 +107,12 @@ public class Runner {
 
         return (Usuarios) user;
     }
-    private void remover(){
+        public LinkedList<Usuarios> remover(Scanner scan){
 
-        Scanner scan = new Scanner(System.in);
         System.out.println("Digite o email do aluno que queira retirar: ");
         String email = scan.nextLine();
 
         if(email.equals("Admin@gmail.com")){
-
             System.out.println("Não é permitido remover o Administrador");
         }
 
@@ -126,10 +124,10 @@ public class Runner {
                 System.out.println("\n" +"Email: " +user.getEmail() + "\nFoi removido com sucesso");
             }
         }
+        return this.users;
     }
-    private void editar(){
+    public LinkedList<Usuarios> editar(Scanner scan){
 
-        Scanner scan = new Scanner(System.in);
         Sistema menu = new Sistema();
 
         System.out.println("Digite o email da conta que queira Editar: ");
@@ -143,7 +141,7 @@ public class Runner {
 
             Pessoa aux = new Pessoa();
 
-            for(Usuarios user : users){
+            for(Usuarios user : this.users){
 
                 if(user.getEmail().equals(email)){
 
@@ -172,14 +170,11 @@ public class Runner {
                     aux.setBolsa();
                     aux.setPeriodoBolsa(scan);
 
-                case 4:
-                    
-            
                 default:
                     break;
             }
         }
-       
+       return this.users;
     }
     public  Usuarios login(Usuarios login){
 

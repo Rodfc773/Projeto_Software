@@ -3,8 +3,8 @@ package Funcionalidades;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import Classes.Pessoa;
-import Classes.Usuarios;
+import Entidades.Pessoa;
+import Entidades.Usuarios;
 
 public class Payment {
     

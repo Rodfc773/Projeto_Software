@@ -3,8 +3,8 @@ package Funcionalidades;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import Classes.Atividades;
-import Classes.Projeto;
+import Entidades.Atividades;
+import Entidades.Projeto;
 
 public class Retirar {
     public LinkedList<Projeto> retirarProjetos(LinkedList<Projeto> projetos){

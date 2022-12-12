@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 import javax.sound.midi.Soundbank;
 
-import Classes.Atividades;
-import Classes.Pessoa;
-import Classes.Projeto;
-import Classes.Ruler;
-import Classes.Usuarios;
+import Entidades.Atividades;
+import Entidades.Pessoa;
+import Entidades.Projeto;
+import Entidades.Ruler;
+import Entidades.Usuarios;
 
 public class Criar {
 

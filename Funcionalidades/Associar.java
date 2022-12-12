@@ -3,10 +3,10 @@ package Funcionalidades;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import Classes.Atividades;
-import Classes.Pessoa;
-import Classes.Projeto;
-import Classes.Usuarios;
+import Entidades.Atividades;
+import Entidades.Pessoa;
+import Entidades.Projeto;
+import Entidades.Usuarios;
 
 public class Associar {
 

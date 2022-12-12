@@ -2,7 +2,7 @@ package Interface;
 
 import java.time.LocalDateTime;
 
-import Classes.Pessoa;
+import Entidades.Pessoa;
 
 public interface Project {
     

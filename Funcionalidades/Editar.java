@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 import javax.sound.midi.Soundbank;
 
-import Classes.Atividades;
-import Classes.Pessoa;
-import Classes.Projeto;
-import Classes.Usuarios;
+import Entidades.Atividades;
+import Entidades.Pessoa;
+import Entidades.Projeto;
+import Entidades.Usuarios;
 
 public class Editar {
 

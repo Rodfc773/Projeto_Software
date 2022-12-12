@@ -84,4 +84,8 @@
 
 
 
+#### Code Smells
 
+* Resolvido code smells de arquitetura :heavy_check_mark:
+* Quantidade de ifs
+* Long Methods
