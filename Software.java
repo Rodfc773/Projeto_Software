@@ -16,6 +16,10 @@ import Funcionalidades.Payment;
 import Funcionalidades.Retirar;
 import Funcionalidades.Runner;
 import Funcionalidades.Sistema;
+import Funcionalidades.Menu.SoftwareAssociar;
+import Funcionalidades.Menu.SoftwareCriar;
+import Funcionalidades.Menu.SoftwareEditar;
+import Funcionalidades.Menu.SoftwareRemover;
 
 public class Software {
 
@@ -44,6 +48,10 @@ public class Software {
        Listar rel = new Listar();
        Payment pagamento = new Payment();
        Software software = new Software();
+       SoftwareAssociar softAssociar = new SoftwareAssociar();
+       SoftwareCriar softCriar = new SoftwareCriar();
+       SoftwareEditar softEditar = new SoftwareEditar();
+       SoftwareRemover softRemover = new SoftwareRemover();
     
 
        run.users.add(admin);
@@ -57,31 +65,31 @@ public class Software {
             option = scan.nextInt();
             scan.nextLine();
 
-            if(option == 0)software.exit(scan);
+            if(option == 0)softCriar.exit(scan);
 
-            if(option == 1)projetos = software.criacaoProjeto(projetos, login, criacao);
+            if(option == 1)projetos = softCriar.criacaoProjeto(projetos, login, criacao);
             
-            if(option == 2) atividades = software.criacaoAtiv(atividades, (Pessoa)login, criacao);
+            if(option == 2) atividades = softCriar.criacaoAtiv(atividades, (Pessoa)login, criacao);
     
-            if(option == 3)run.users = software.createUsers(run, login, scan);
+            if(option == 3)run.users = softCriar.createUsers(run, login, scan);
             
-            if(option == 4)projetos = software.removerProjeto(projetos, (Pessoa)login, remover);
+            if(option == 4)projetos = softRemover.removerProjeto(projetos, (Pessoa)login, remover);
 
-            if(option == 5)atividades = software.removerTask(atividades, (Pessoa)login, remover);
+            if(option == 5)atividades = softRemover.removerTask(atividades, (Pessoa)login, remover);
 
-            if(option == 6)run.users = software.removeUsers(run, login, scan);
+            if(option == 6)run.users = softRemover.removeUsers(run, login, scan);
 
-            if(option == 7)projetos = software.editarProjeto(projetos, (Pessoa) login, edicao);
+            if(option == 7)projetos = softEditar.editarProjeto(projetos, (Pessoa) login, edicao);
 
-            if(option == 8)atividades =  software.editarTasks(atividades, (Pessoa) login, edicao);
+            if(option == 8)atividades =  softEditar.editarTasks(atividades, (Pessoa) login, edicao);
 
-            if(option == 9)run.users = software.editarUsuarios(run, login, scan);
+            if(option == 9)run.users = softEditar.editarUsuarios(run, login, scan);
 
-            if(option == 10)projetos = software.associarUsersToProject(projetos, run.users, login, function);
+            if(option == 10)projetos = softAssociar.associarUsersToProject(projetos, run.users, login, function);
 
-            if(option == 11)projetos = software.tasksToProjects(projetos, atividades, login, function);
+            if(option == 11)projetos = softAssociar.tasksToProjects(projetos, atividades, login, function);
 
-            if(option == 12)atividades = software.usersToTasks(atividades, run.users, login, function);
+            if(option == 12)atividades = softAssociar.usersToTasks(atividades, run.users, login, function);
 
             if(option == 13)projetos = software.alterarStatus(projetos, login, status);
 
@@ -98,174 +106,7 @@ public class Software {
             if(option == 19) software.login(login, run);
        }
     }
-    public void exit(Scanner scan) {
-        
-        scan.close();
-        System.exit(0);
-    }
-    public LinkedList<Projeto> criacaoProjeto(LinkedList <Projeto> projetos, Usuarios usuario, Criar create){
-
-        Projeto projeto = new Projeto();
-
-        projeto = create.criarProjetos((Pessoa)usuario);
-
-        if(projeto != null){
-            projetos.add(projeto);
-        }
-        else{
-            System.out.println("Não foi possível criar o projeto");
-        }
-        return projetos;
-    }
-    public LinkedList <Atividades> criacaoAtiv(LinkedList <Atividades> atvds, Pessoa usuario, Criar create){
-
-        Atividades newTask = new Atividades();
-
-       newTask =  create.criarAtividade(usuario);
-
-
-       if(newTask!= null)atvds.add(newTask);
-
-       else System.out.println("Não foi possível criar a Atividade");
-
-       return atvds;
-    }
-    public LinkedList <Projeto> removerProjeto(LinkedList<Projeto> projetos, Pessoa login, Retirar remove){
-
-        try{
-            if((login.getAcessLevel() == Ruler.Coordenador || login.getAcessLevel() == Ruler.Admin) && login != null){
-                projetos =  remove.retirarProjetos(projetos);
-            }
-            else{
-                System.out.println("É nescessário estar conectado em uma conta de Acess level de Admin");
-            }
-        return projetos;
-
-        }catch(Exception y){
-
-            System.out.println("É nescessário estar conectado em alguma conta para realizar essa funcionalidade");
-            return projetos;
-        }
-    }
-    public LinkedList<Atividades> removerTask(LinkedList<Atividades> atvds, Pessoa login, Retirar remove){
-
-        try{
-
-            if((login.getAcessLevel() == Ruler.Coordenador || login.getAcessLevel() == Ruler.Admin) && login != null){
-                atvds =  remove.retirarAtividades(atvds);
-            }
-            else{
-                System.out.println("É nescessário está conectado em uma conta de Acess level de Admin");
-            }
-
-            return atvds;
-        }catch(Exception e){
-
-            System.out.println("É nescessário está conectado a alguma conta existente para realizar essa função");
-            return atvds;
-        }
-    }
-    public  LinkedList<Projeto> editarProjeto(LinkedList<Projeto> projetos, Pessoa login, Editar edicao){
-
-        try{
-            if(login.getAcessLevel() == Ruler.Coordenador || login.getAcessLevel() == Ruler.Admin){
-
-                projetos = edicao.editarProjeto(projetos, login);
-                return projetos;
-            }
-            else{
-                System.out.println("E nescessario esta conectado a uma conta de professor/coordenador ou a conta de admnistrador do sistema");
-
-                return projetos;
-            }
-        }catch(Exception y){
-
-            System.out.println("E nescessario esta conectado em algum conta para realizar essa ação");
-            return projetos;
-        }
-    }
-    public LinkedList<Atividades> editarTasks(LinkedList <Atividades> tasks, Pessoa login, Editar edicao){
-
-        try{
-            if(login.getAcessLevel() == Ruler.Coordenador || login.getAcessLevel() == Ruler.Admin){
-
-                tasks = edicao.editarAtividades(tasks);
-                return tasks;
-            }
-            else{
-                System.out.println("E nescessario esta conectado a uma conta de professor/coordenador ou a conta de admnistrador do sistema");
-
-                return tasks;
-            }
-        }catch(Exception y){
-
-            System.out.println("E nescessario esta conectado a uma conta de professor/coordenador ou a conta de admnistrador do sistema");
-            return tasks;
-        }
-    }
-    public  LinkedList<Projeto> associarUsersToProject(LinkedList<Projeto> projetos, LinkedList<Usuarios> users, Usuarios login, Associar func){
-
-        try{
-            if(login.getAcessLevel().equals(Ruler.Admin) || login.getAcessLevel().equals(Ruler.Coordenador)){
-
-                projetos = func.usersToProject(projetos, users);
-
-                return projetos;
-            }
-            else{
-                System.out.println("E nescessario esta conectado a uma conta de professor/coordenador ou a conta de admnistrador do sistema");
-
-                return projetos;
-
-            }
-        }catch(Exception y){
-
-            System.out.println("E nescessario esta conectado a uma conta de professor/coordenador ou a conta de admnistrador do sistema");
-            return projetos;
-        }
-    }
-    public LinkedList<Projeto> tasksToProjects(LinkedList<Projeto> projetos, LinkedList<Atividades> tasks, Usuarios login, Associar func){
-
-       try{
-            if(login.getAcessLevel().equals(Ruler.Admin) || login.getAcessLevel().equals(Ruler.Coordenador)){
-
-                projetos = func.taskToProject(projetos, tasks);
-
-                return projetos;
-            }
-            else{
-                System.out.println("E nescessario esta conectado a uma conta de professor/coordenador ou a conta de admnistrador do sistema");
-
-                return projetos;
-
-            }
-        }catch(Exception y){
-
-            System.out.println("E nescessario esta conectado a uma conta de professor/coordenador ou a conta de admnistrador do sistema");
-            return projetos;
-        }
-    }
-    public LinkedList<Atividades> usersToTasks(LinkedList<Atividades> tasks, LinkedList<Usuarios> users, Usuarios login, Associar func){
-
-        try{
-            if(login.getAcessLevel().equals(Ruler.Admin) || login.getAcessLevel().equals(Ruler.Coordenador)){
-
-                tasks = func.userTotask(tasks, users);
-
-                return tasks;
-            }
-            else{
-                System.out.println("E nescessario esta conectado a uma conta de professor/coordenador ou a conta de admnistrador do sistema");
-
-                return tasks;
-
-            }
-        }catch(Exception y){
-
-            System.out.println("E nescessario esta conectado a uma conta de professor/coordenador ou a conta de admnistrador do sistema");
-            return tasks;
-        }
-    }
+  
     public LinkedList<Projeto> alterarStatus(LinkedList<Projeto> projetos, Usuarios login, AlterarStatus status){
 
         try{
@@ -337,60 +178,6 @@ public class Software {
         }
         else{
             return null;
-        }
-    }
-    public LinkedList<Usuarios> removeUsers(Runner run, Usuarios login, Scanner scan){
-
-        try{
-            if(login.getAcessLevel().equals(Ruler.Admin) || login.getAcessLevel().equals(Ruler.Coordenador)){
-
-                run.users = run.remover(scan);
-                return run.users;
-            }
-            else{
-
-                System.out.println("É nescessário estar conectado a uma conta de Professor|Pesquisador");
-                return run.users;
-            }
-        }catch(Exception y){
-
-            System.out.println("É nescessário estar conectado em alguma conta para realizar essa ação");
-            return run.users;
-        }
-    }
-    public LinkedList<Usuarios> editarUsuarios(Runner run, Usuarios login, Scanner scan){
-
-        try{
-            if(login.getAcessLevel().equals(Ruler.Admin) || login.getAcessLevel().equals(Ruler.Coordenador)){
-
-                run.users = run.editar(scan);
-                return run.users;
-            }
-            else{
-                System.out.println("É Nescessário estar conectado a uma conta de Professor}Pesquisador");
-                return run.users;
-            }
-        }catch(Exception y ){
-            System.out.println("É nescessário estar conectado em alguma conta para realizar essa ação");
-            return run.users;
-        }
-    }
-    public LinkedList<Usuarios> createUsers(Runner run, Usuarios login, Scanner scan){
-
-        try{
-            if(login.getAcessLevel().equals(Ruler.Coordenador) || login.getAcessLevel().equals(Ruler.Admin)){
-
-                run.users.add(run.createNewUser());
-                return run.users;
-            }
-            else{
-                System.out.println("E nescessario esta conectado a uma conta professor|pesquisador");
-                return run.users;
-            }
-        }catch(Exception y){
-
-            System.out.println("E nescessario estar conectado em alguma conta");
-            return run.users;
         }
     }
 }
