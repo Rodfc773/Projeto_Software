@@ -157,22 +157,41 @@ public class Runner {
 
             switch (option){
                 case 1:
-                    
+                    System.out.println("Digite o novo nome a ser cadastrado: ");
                     String nome = scan.nextLine();
                     aux.setNome(nome);
                     break;
                 case 2:
+                    System.out.println("Digite o novo Tipo a ser cadastrado: ");
+
                     String tipo = scan.nextLine();
                     aux.setTipo(tipo);
+                    break;
                 
                 case 3:
+                    System.out.println("Cadastre a bolsa: ");
+
                     aux.setpBolsa();
                     aux.setBolsa();
                     aux.setPeriodoBolsa(scan);
+                    break;
+                case 4:
+                    System.out.println("Digite o novo email: ");
+                    String emailSec = scan.nextLine();
 
+                    aux.setEmail(emailSec);
+                    break;
+                case 5:
+                    System.out.println("Digite a nova senha: ");
+
+                    String password = scan.nextLine();
+
+                    aux.setPassword(password);
+                    break;
                 default:
                     break;
             }
+            this.users.add(aux);
         }
        return this.users;
     }
@@ -204,7 +223,7 @@ public class Runner {
                 }
 
             }
-            System.out.println(login == null ? "Nenhum Usuário encontrado com esse login" : "Login bem sucedido!"); 
+            System.out.println(this.section == null ? "Nenhum Usuário encontrado com esse login" : "Login bem sucedido!"); 
             return this.section;
         }
 }

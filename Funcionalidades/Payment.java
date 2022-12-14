@@ -11,7 +11,6 @@ public class Payment {
     public void paymentBolsa(LinkedList<Usuarios> users, Scanner scan){
 
         System.out.println("Digite o email do aluno que será feito o pagamento de bolsa: ");
-        scan.nextLine();
         String email = scan.nextLine();
         Pessoa aluno = new Pessoa();
 

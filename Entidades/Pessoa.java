@@ -93,6 +93,7 @@ public class Pessoa extends Usuarios{
     public void setTipo(String tipo){
 
         this.tipo = tipo;
+        this.setAcceslevel(tipo);
     }
     public void setpBolsa(){
 

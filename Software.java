@@ -44,7 +44,6 @@ public class Software {
        Editar edicao = new Editar();
        Associar function = new Associar();
        AlterarStatus status = new AlterarStatus();
-       Listar func = new Listar();
        Listar rel = new Listar();
        Payment pagamento = new Payment();
        Software software = new Software();
@@ -103,7 +102,7 @@ public class Software {
 
             if(option == 18)software.paymentBolsa(run.users, login, pagamento, scan);
 
-            if(option == 19) software.login(login, run);
+            if(option == 19) login = software.login(login, run);
        }
     }
   
