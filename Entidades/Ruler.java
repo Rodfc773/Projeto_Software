@@ -1,4 +1,4 @@
-package Classes;
+package Entidades;
 
 public enum Ruler {
 

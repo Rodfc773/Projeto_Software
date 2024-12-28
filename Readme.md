@@ -7,8 +7,8 @@
 
   * __Para rodar a maior parte das funcionalidades vai ser nescessário estar logado na conta inicial, a conta Administrador, caso não seja feito o login, as principais funcionalidades emitiram um erro__
 
-  * Login da conta admin = Admin@gmail.com
-  * Senha da conta  admin = Adminprojetos 
+  * Login da conta admin = Admin@gmail.com;
+  * Senha da conta  admin = admin;
 
 
 ### Funcionalidades:
@@ -84,4 +84,9 @@
 
 
 
+#### Code Smells
 
+* Code smells resolvidos:
+* code smells de arquitetura :heavy_check_mark:
+* Long Class :heavy_check_mark:
+* Long Methods  :heavy_check_mark:

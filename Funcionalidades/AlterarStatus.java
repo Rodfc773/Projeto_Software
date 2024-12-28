@@ -3,11 +3,12 @@ package Funcionalidades;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import Classes.Projeto;
-import Classes.Ruler;
-import Classes.Status;
-import Classes.Usuarios;
+import Entidades.Projeto;
+import Entidades.Ruler;
+import Entidades.Status;
+import Entidades.Usuarios;
 
+// Separar em duas classes, code smells()
 public class AlterarStatus {
     
     public   LinkedList <Projeto> mudarStatus(LinkedList <Projeto> projetos, Usuarios user){
@@ -17,7 +18,7 @@ public class AlterarStatus {
         String nome = scan.nextLine();
         for (Projeto projeto : projetos){
 
-            if(projeto.getNomeProjeto().equals(nome)){
+            if(projeto.getNome().equals(nome)){
 
                 if(projeto.getCoordenador() != user){
 
@@ -44,7 +45,7 @@ public class AlterarStatus {
                         break;
 
                     }
-                    if(projeto.status == Status.ANDAMENTO) {
+                    if(projeto.status == Status.EM_ANDAMENTO) {
                         System.out.println("!!!! Status alterado com Sucesso !!!");
 
                         projeto.setStatusFinalizado();

@@ -1,11 +1,12 @@
+
 import java.util.LinkedList;
 import java.util.Scanner;
 
-
-import Classes.Atividades;
-import Classes.Projeto;
-import Classes.Ruler;
-import Classes.Usuarios;
+import Entidades.Atividades;
+import Entidades.Pessoa;
+import Entidades.Projeto;
+import Entidades.Ruler;
+import Entidades.Usuarios;
 import Funcionalidades.AlterarStatus;
 import Funcionalidades.Associar;
 import Funcionalidades.Criar;
@@ -15,299 +16,167 @@ import Funcionalidades.Payment;
 import Funcionalidades.Retirar;
 import Funcionalidades.Runner;
 import Funcionalidades.Sistema;
+import Funcionalidades.Menu.SoftwareAssociar;
+import Funcionalidades.Menu.SoftwareCriar;
+import Funcionalidades.Menu.SoftwareEditar;
+import Funcionalidades.Menu.SoftwareRemover;
 
 public class Software {
 
     public static void main(String[] args) {
 
        Sistema menu = new Sistema();
-       Usuarios admin = new Usuarios();
-       admin.setID(1);
-       Usuarios login = new Usuarios();
+       Usuarios admin = new Pessoa();
+       Usuarios login = new Pessoa();
+
        login = null;
 
 
        LinkedList <Projeto> projetos = new LinkedList<Projeto>();
        LinkedList <Atividades> atividades = new LinkedList<Atividades>();
-       Scanner tecladoScanner = new Scanner(System.in);
+       Scanner scan = new Scanner(System.in);
+    
 
        Runner run = new Runner();
 
+       Criar criacao = new Criar();
+       Retirar remover = new Retirar();
+       Editar edicao = new Editar();
+       Associar function = new Associar();
+       AlterarStatus status = new AlterarStatus();
+       Listar rel = new Listar();
+       Payment pagamento = new Payment();
+       Software software = new Software();
+       SoftwareAssociar softAssociar = new SoftwareAssociar();
+       SoftwareCriar softCriar = new SoftwareCriar();
+       SoftwareEditar softEditar = new SoftwareEditar();
+       SoftwareRemover softRemover = new SoftwareRemover();
+    
+
        run.users.add(admin);
 
+       int option;
+
        while(true){
+            
+           if(login == null) menu.printSistema();
+           else menu.printSistemaLogin();
+            option = scan.nextInt();
+            scan.nextLine();
 
-            menu.printSistema();
+            if(option == 0)softCriar.exit(scan);
 
-            int opcao = tecladoScanner.nextInt();
-
-            try{
-
-                switch (opcao){
-
-                    case 0:
-                        tecladoScanner.close();
-                        System.exit(0);
-                        break;
-                    case 1:
-
-                        Criar criacao = new Criar();
-                        Retirar remover = new Retirar();
-
-                        menu.printCriar();
-
-                        int opcao2 = tecladoScanner.nextInt();
-
-                        tecladoScanner.nextLine();
-
-                        switch (opcao2){
-
-                            case 1:
-
-                                Projeto projeto = new Projeto();
-
-                               projeto = criacao.criarProjetos(login);
-
-                                if(projeto != null){
-
-                                    projeto.setID(projetos.size());
-                                    projetos.add(projeto);
-
-                                }
-                                else{
-                                    System.out.println("Não foi possivel criar o projeto");
-                                }
-
-
-                               break;
-                            case 2:
-
-                                Atividades atividade = new Atividades();
-                                atividade = criacao.criarAtividade(login);
-
-                                if(atividade != null){
-
-                                    atividade.SetID(atividades.size());
-
-                                    atividades.add(atividade);
-
-                               }
-                               else{
-                                    System.out.println("Não foi possivel criar a Atividade");
-                                }
-                                break;
-                            case 3:
-
-                                run.Runner(login);
-
-                                break;
-                            case  4:
-
-                                if(login.type == Ruler.ADMIN && login != null){
-                                    projetos =  remover.retirarProjetos(projetos);
-                                }
-                                else{
-                                    System.out.println("É nescessário está logado em uma conta de Acess level de Admin");
-                                }
-                                break;
-                            case 5:
-
-                                if(login.type == Ruler.ADMIN && login != null){
-                                    atividades = remover.retirarAtividades(atividades);
-                                }
-                                else{
-                                    System.out.println("É nescessário está logado em uma conta de Acess level de Admin");
-                                }
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case 2:
-
-                        Editar edicao = new Editar();
-
-                        menu.printEditar();
-
-                        int oP= tecladoScanner.nextInt();
-
-                        switch(oP){
-
-                            case 1:
-
-                                try{
-                                    if(login.type == Ruler.ADMIN && login != null){
-
-                                        projetos = edicao.editarProjeto(projetos, login);
-                                    }
-                                }catch(Exception y){
-
-                                    System.out.println("É nescessário está logado em uma conta de Acess level de Admin");
-                                }
-                               
-                                break;
-                            case 2:
-
-                            try{
-                                if(login.type == Ruler.ADMIN && login != null){
-
-                                    atividades = edicao.editarAtividades(atividades);
-                                }
-                            }catch(Exception y){
-
-                                System.out.println("É nescessário está logado em uma conta de Acess level de Admin");
-                            }
-                                break;
-                            default:
-
-                                break;
-
-                        }
-
-                        break;
-                    case 3:
-                        try{
-                            if(login.type != Ruler.ADMIN){
-
-                                System.out.println("Para associar é nescessário está logado em uma conta de Acess level Admin");
-                                break;
-                            }
-                            menu.printAssociar();
-                            Associar function = new Associar();
+            if(option == 1)projetos = softCriar.criacaoProjeto(projetos, login, criacao);
+            
+            if(option == 2) atividades = softCriar.criacaoAtiv(atividades, (Pessoa)login, criacao);
     
-                            int option = tecladoScanner.nextInt();
-                            tecladoScanner.nextLine();
-    
-                            switch(option){
-    
-                                case 1:
-    
-                                    projetos = function.usersToProject(projetos, run.users);
-    
-    
-                                    break;
-                                case 2:
-                                    projetos = function.taskToProject(projetos, atividades);
-    
-                                    break;
-                                case 3:
-                                    atividades = function.userTotask(atividades, run.users);
-                                    break;
-                        }
-                    }catch(Exception y){
+            if(option == 3)run.users = softCriar.createUsers(run, login, scan);
+            
+            if(option == 4)projetos = softRemover.removerProjeto(projetos, (Pessoa)login, remover);
 
-                            System.out.println("!------- ----------------       ERROR !     ----------------\nUsario não conectado, por favor faça login");
-                        }
+            if(option == 5)atividades = softRemover.removerTask(atividades, (Pessoa)login, remover);
 
-                        break;
-                    case 4:
+            if(option == 6)run.users = softRemover.removeUsers(run, login, scan);
 
-                        try{
+            if(option == 7)projetos = softEditar.editarProjeto(projetos, (Pessoa) login, edicao);
 
-                            if(login.type != Ruler.ADMIN){
+            if(option == 8)atividades =  softEditar.editarTasks(atividades, (Pessoa) login, edicao);
 
-                                System.out.println("Para alterar o status é nescessário está logado em uma conta de Acess level Admin");
-                                break;
-                            }
-                            else{
+            if(option == 9)run.users = softEditar.editarUsuarios(run, login, scan);
 
-                                AlterarStatus status = new AlterarStatus();
+            if(option == 10)projetos = softAssociar.associarUsersToProject(projetos, run.users, login, function);
 
-                                projetos = status.mudarStatus(projetos, login);
-                            }
-                        }catch(Exception y){
+            if(option == 11)projetos = softAssociar.tasksToProjects(projetos, atividades, login, function);
 
-                            System.out.println("!------- ----------------       ERROR !     ----------------\nUsario não conectado, por favor faça login");
-                        }
+            if(option == 12)atividades = softAssociar.usersToTasks(atividades, run.users, login, function);
 
-                        break;
-                        
-                    case 5:
-                        try{
-                            if(login != null){
+            if(option == 13)projetos = software.alterarStatus(projetos, login, status);
 
-                                int op;
-                        menu.printListar();
-                        Listar func = new Listar();
+            if(option == 14)software.listarProjetosCadastrados(projetos, rel);
 
-                         op = tecladoScanner.nextInt();
-                         tecladoScanner.nextLine();
+            if(option == 15)software.listarTasksCadastradas(atividades, rel);
 
-                            switch(op){
+            if(option == 16)software.listarUsersCadastrados(run.users, rel);
 
-                            case 1:
+            if(option == 17)software.relatorioProjeto(projetos, scan, rel);
 
-                                func.listarProjetos(projetos);
-                                break;
-                            case 2:
-                                func.listarAtividades(atividades);
-                                break;
-                            case 3:
-                                func.listarUsuarios(run.users);
-                                break;
-                            }
-                        }
-                        }catch(Exception y){
+            if(option == 18)software.paymentBolsa(run.users, login, pagamento, scan);
 
-                            System.out.println("!------------   ERROR ----------------!");
-                            System.out.println("!------------   Não tem nenhuma conta logado --------------!\n");
-                        }
-                        break;
-                    case 6:
-                        System.out.println("Digite o nome do projeto para imprimir seu relatorio: ");
-                        tecladoScanner.nextLine();
-                        String nome = tecladoScanner.nextLine();
-                        Listar rel = new Listar();
-
-                        for(Projeto projeto : projetos){
-
-                            if(projeto.getNomeProjeto().equals(nome)){
-
-                                rel.relatorio(projeto);
-                                break;
-                            }
-                        }
-                        break;
-                    case 7:
-
-                        break;
-                    case 8:
-                            Payment pagamento = new Payment();
-
-                            try{
-                                if(login != null && login.type == Ruler.ADMIN){
-
-                                    pagamento.paymentBolsa(run.users, tecladoScanner);
-                                }
-                                else{
-                                    System.out.println("O usuario que irá realizar o pagamento da bolsa tem que ter nivel de acesso de admin9");
-                                }
-                            }catch(Exception y){
-
-                                System.out.println("Não existe nenhuma conta conectada");
-                            }
-                        break;
-                    case 9:
-
-                        login =  run.login();
-
-                        System.out.println(login == null ? "Nenhum Usuário encontrado com esse login" : "Login bem sucedido!"); 
-
-                        break;
-                    case 10:
-
-                        break;
-                        default:
-                            System.out.println("!----------- ERRO, DIGITE UMA OPÇÃO VÁLIDA ---------------!");
-                            break;
-                    }
-                
-                }
-            catch(Exception y){
-
-                System.out.println(y);
-            }
+            if(option == 19) login = software.login(login, run);
        }
     }
+  
+    public LinkedList<Projeto> alterarStatus(LinkedList<Projeto> projetos, Usuarios login, AlterarStatus status){
 
+        try{
+            if(login.getAcessLevel().equals(Ruler.Coordenador) || login.getAcessLevel().equals(Ruler.Admin)){
+
+                projetos = status.mudarStatus(projetos, login);
+
+                return projetos;
+            }
+            else{
+                System.out.println("E nescessário estar logado em uma conta de Professor ou Pesquisador para realizar essa ação");
+
+                return projetos;
+            }
+        }catch(Exception y){
+
+            System.out.println("É nescessário estar conectado a alguma conta para realizar essa função");
+            return projetos;
+        }
+    }
+    public void listarProjetosCadastrados(LinkedList<Projeto> projetos, Listar list){
+
+        list.listarProjetos(projetos);
+    }
+    public void listarTasksCadastradas(LinkedList<Atividades> tasks, Listar list){
+
+        list.listarAtividades(tasks);
+    }
+    public void listarUsersCadastrados(LinkedList<Usuarios> users, Listar list){
+
+        list.listarUsuarios(users);
+    }
+    public void relatorioProjeto(LinkedList<Projeto> projetos, Scanner scan, Listar list){
+
+        System.out.println("Digite o nome do projeto que você quer o relátorio");
+        String name = scan.nextLine();
+
+        for( Projeto project : projetos){
+
+            if(project.getNome().equals(name)){
+
+                list.relatorio(project);
+
+                break;
+            }
+        }
+    }
+    public void paymentBolsa(LinkedList<Usuarios> users, Usuarios login, Payment pagamento, Scanner scan){
+
+            try{
+                if(login != null && (login.getAcessLevel().equals(Ruler.Admin) || login.getAcessLevel().equals(Ruler.Coordenador))){
+
+                    pagamento.paymentBolsa(users, scan);
+                }
+                else{
+                    System.out.println("O usuario que irá realizar o pagamento da bolsa tem que ter nivel de acesso de admin9");
+                }
+            }catch(Exception y){
+
+                System.out.println("Não existe nenhuma conta conectada");
+            
+        }
+    }
+    public Usuarios login(Usuarios login, Runner run){
+
+        if(login == null){
+
+            return run.login(login);
+        }
+        else{
+            return null;
+        }
+    }
 }

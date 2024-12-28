@@ -1,4 +1,4 @@
-package Classes;
+package Entidades;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
