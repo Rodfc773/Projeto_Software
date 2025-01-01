@@ -71,6 +71,7 @@ public class Atividades implements Project{
 
         this.dataFim = dataFinal;
     }
+
     public void setResponsavel(Pessoa responsavel){
 
         this.responsavel = responsavel;

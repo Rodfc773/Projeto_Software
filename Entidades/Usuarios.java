@@ -51,7 +51,7 @@ public class Usuarios implements Cadastro{
     }
     public void setAcceslevel(String tipo){
 
-        if(tipo.equals("Professor")|| tipo.equals("Pesquisador")){
+        if(tipo.equalsIgnoreCase("Professor")|| tipo.equalsIgnoreCase("Pesquisador")){
 
             this.acceslevel = Ruler.Coordenador;
         }
