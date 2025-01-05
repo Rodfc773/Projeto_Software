@@ -6,13 +6,13 @@ import java.util.Scanner;
 import Entidades.Pessoa;
 import Entidades.Ruler;
 import Entidades.Usuarios;
+import Interface.Cadastro;
 
 public class Runner {
 
-    public LinkedList  <Usuarios> users =  new LinkedList<Usuarios>();
-
-    private Usuarios section = new Usuarios();
+    private Cadastro section = new Usuarios();
     private boolean  running = true;
+    private UserManagementService userService = new UserManagementService(this.section);
 
     public void Runner(Usuarios login){
         this.running = true;
@@ -25,16 +25,12 @@ public class Runner {
         while(running){
 
             try{
-                if(login.getAcessLevel().equals(Ruler.Aluno)){
 
-                    System.out.println("!----  Error  ------!\nPara Cadastrar usuarios é nescessario está em uma conta do tipo Administrador");
-                    break;
-                }
-                
                 this.section = login;
-                System.out.println(this.section != null ? "Seção OK" : "Por favor faça login pra continuar");
-                System.out.println("!---------------  1 - Cria Usuário --------------!\n!------------- 0 - encerrar o sistema ---------------!\n");
-                if(this.section != null && (this.section.getAcessLevel().equals(Ruler.Admin) || this.section.getAcessLevel().equals(Ruler.Coordenador))) System.out.println("!----------------- 2 - Opção de administrador ------------!" );
+
+                userService.setUserManager(section);
+
+                Sistema.createUserMenuBeforeOpt();
 
                 int op = scan.nextInt();
                 scan.nextLine();
@@ -42,39 +38,25 @@ public class Runner {
                 switch (op){
 
                     case 1:
-                        if(this.section == null || this.section.getAcessLevel().equals(Ruler.Aluno)){
-                            System.out.println("Por favor logue em uma conta do tipo administrador para usar a função");
-                            break;
-                        }
-                        else{
-                            users.add(createNewUser());
-                        }
+
+                        userService.addUser(createNewUser());
+                        break;
+                    case 2:
+
+                        Sistema.adminOptInCreateUser();
+                        int op2 = scan.nextInt();
+                        scan.nextLine();
+
+                        if(op2 == 1) remover(scan);
+                        if (op2 == 2) editar(scan);
 
                         break;
-                        case 2:
 
-                            System.out.println("!----------- FUNCIONALIDADES DE ADMINISTRADOR -----------!");
-                            System.out.println("!-----------        1 - Remover                 -----------!");
-                            System.out.println("!-----------        2 - Editar informações      -----------!");
-
-                            int op2 = scan.nextInt();
-                            scan.nextLine();
-
-                            switch(op2){
-
-                                case 1: 
-                                    remover(scan);
-                                    break;
-                                case 2:
-                                    editar(scan);
-                                    break;
-                                default:
-                                    break;
-                            }
                     case 0:
                         running = false;
                         break;
                     default:
+                        running = false;
                         break;
                 }
             }catch(Exception e){
@@ -107,7 +89,7 @@ public class Runner {
 
         return (Usuarios) user;
     }
-        public LinkedList<Usuarios> remover(Scanner scan){
+        public boolean remover(Scanner scan){
 
         System.out.println("Digite o email do aluno que queira retirar: ");
         String email = scan.nextLine();
@@ -116,15 +98,8 @@ public class Runner {
             System.out.println("Não é permitido remover o Administrador");
         }
 
-        for (Usuarios user : this.users){
+        return userService.removeUser(email);
 
-            if(user.getEmail().equals(email)){
-
-                users.remove(user);
-                System.out.println("\n" +"Email: " +user.getEmail() + "\nFoi removido com sucesso");
-            }
-        }
-        return this.users;
     }
     public LinkedList<Usuarios> editar(Scanner scan){
 
@@ -198,8 +173,8 @@ public class Runner {
     public  Usuarios login(Usuarios login){
 
             if(login != null){
-                System.out.println("Bye bye " + login.getEmail());
-                return null;
+                System.out.println("Você ja está conectado ao sistema" + login.getEmail());
+                return login;
             }
 
             Sistema menu = new Sistema();
@@ -210,19 +185,8 @@ public class Runner {
             System.out.println("Digite a senha: ");
             String password = scan.nextLine();
 
-            for (Usuarios user : users){
 
-                if((user.getEmail().equals(email) && user.getPassword().equals(password))){
-
-                    this.section = user;
-                    System.out.println("Seja bem vindo: " +this.section.getEmail());
-                    break;
-                }
-                else{
-                    this.section = null;
-                }
-
-            }
+            this.section = SessionManagement.login(email, password, userService.getAllUsers());
             System.out.println(this.section == null ? "Nenhum Usuário encontrado com esse login" : "Login bem sucedido!"); 
             return this.section;
         }

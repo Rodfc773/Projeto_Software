@@ -1,6 +1,7 @@
 package Funcionalidades;
 
 
+import Entidades.Ruler;
 import Interface.Cadastro;
 
 import java.util.ArrayList;
@@ -10,12 +11,18 @@ import java.util.Optional;
 
 public class UserManagementService {
     private List<Cadastro> users;
+    private Cadastro userManager;
 
-    UserManagementService(){
+    UserManagementService(Cadastro loginAccess){
         users = new LinkedList<>();
+        userManager = loginAccess;
     }
 
     public void addUser(Cadastro newUser){
+
+        if(userManager.getAcessLevel().equals(Ruler.Aluno)){
+            throw new RuntimeException("Para acessar esse recurso é nescessário uma conta de nível coordenador");
+        }
 
         Optional<Cadastro> isAlreadyRegistered = findUserByEmail(newUser.getEmail());
 
@@ -31,6 +38,11 @@ public class UserManagementService {
         });
     }
     public boolean removeUser(String userEmailRequested){
+
+        if(userEmailRequested.toLowerCase().contains("admin")){
+
+            throw new RuntimeException("Não é possível remover a conta de administrador");
+        }
         return users.removeIf(user -> user.getEmail().equals(userEmailRequested));
     }
     public List<Cadastro> getAllUsers(){
@@ -38,5 +50,14 @@ public class UserManagementService {
     }
     public Optional<Cadastro> findUserByEmail(String email){
         return users.stream().filter(user->user.getEmail().equalsIgnoreCase(email)).findFirst();
+    }
+
+    public void setUserManager(Cadastro userManager) {
+        this.userManager = userManager;
+    }
+
+    public Cadastro getUser(){
+
+        return userManager;
     }
 }

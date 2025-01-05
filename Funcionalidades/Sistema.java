@@ -2,7 +2,7 @@ package Funcionalidades;
 
 
 public class Sistema {
-    public void printSistema(){
+    public static void printSistema(){
 
         System.out.println("\n\n\n!-------------- SISTEMA DE GERENCIAMENTO DE PROJETOS ---------------!");
         System.out.println("!--------------                                      ---------------!");
@@ -38,7 +38,7 @@ public class Sistema {
 
 
     }
-    public void printSistemaLogin(){
+    public static void printSistemaLogin(){
 
         System.out.println("\n\n\n!-------------- SISTEMA DE GERENCIAMENTO DE PROJETOS ---------------!");
         System.out.println("!--------------                                      ---------------!");
@@ -255,5 +255,20 @@ public class Sistema {
 
         System.out.println("!-------------------- FUNCIONALIDADE : LOGIN -------------------!");
         System.out.println("Digite um Email: ");
+    }
+
+    public static void createUserMenuBeforeOpt(){
+
+        System.out.println("!-------------------- OPÇÕES ---------------------!");
+        System.out.println("-------------------- 1: Criar ---------------------");
+        System.out.println("!-------------------- 2: Opções de administrador ---------------------!");
+        System.out.println("!-------------------- 0: Encerrar o sistema ---------------------!");
+
+    }
+
+    public static void adminOptInCreateUser(){
+        System.out.println("!----------- FUNCIONALIDADES DE ADMINISTRADOR -----------!");
+        System.out.println("!-----------        1 - Remover                 -----------!");
+        System.out.println("!-----------        2 - Editar informações      -----------!");
     }
 }
