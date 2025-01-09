@@ -32,9 +32,8 @@ public class Usuarios implements Cadastro{
         return this.email;
     }
     @Override
-    public Enum<Ruler> getAcessLevel(){
-
-        return this.acceslevel;
+    public String getAcessLevel(){
+        return this.acceslevel.toString();
     }
 
 

@@ -10,7 +10,7 @@ import Interface.Cadastro;
 
 public class Runner {
 
-    private Cadastro section = new Usuarios();
+    private Cadastro section;
     private boolean  running = true;
     private UserManagementService userService = new UserManagementService(this.section);
 
@@ -67,27 +67,9 @@ public class Runner {
     }
     public Usuarios createNewUser(){
 
-        Sistema menuSistema = new Sistema();
-        Scanner tecladoScanner =  new Scanner(System.in);
 
 
-        menuSistema.printCriarUsuarioNome();
-        String nome = tecladoScanner.nextLine();
-
-        menuSistema.printCriarUsuarioTipo();
-        String tipo = tecladoScanner.nextLine();
-
-
-        menuSistema.printCriarUsuarioEmail();
-        String email = tecladoScanner.nextLine();
-
-        menuSistema.printCriarUsuarioPassword();
-        String password = tecladoScanner.nextLine();
-
-
-        Pessoa user = new Pessoa(email, password, nome, tipo,tecladoScanner);
-
-        return (Usuarios) user;
+        return user;
     }
         public boolean remover(Scanner scan){
 
@@ -101,76 +83,10 @@ public class Runner {
         return userService.removeUser(email);
 
     }
-    public LinkedList<Usuarios> editar(Scanner scan){
+    public void editar(Scanner scan) {
 
-        Sistema menu = new Sistema();
-
-        System.out.println("Digite o email da conta que queira Editar: ");
-        String email = scan.nextLine();
-
-        if(email.equals("Admin@gmail.com")){
-
-            System.out.println("Não é permitido Editar o Administrador");
-        }
-        else{
-
-            Pessoa aux = new Pessoa();
-
-            for(Usuarios user : this.users){
-
-                if(user.getEmail().equals(email)){
-
-                    aux = (Pessoa) user;
-                    this.users.remove(user);
-                    break;
-                }
-            }
-
-            menu.printEditarUsuarios();
-            int option = scan.nextInt();
-            scan.nextLine();
-
-            switch (option){
-                case 1:
-                    System.out.println("Digite o novo nome a ser cadastrado: ");
-                    String nome = scan.nextLine();
-                    aux.setNome(nome);
-                    break;
-                case 2:
-                    System.out.println("Digite o novo Tipo a ser cadastrado: ");
-
-                    String tipo = scan.nextLine();
-                    aux.setTipo(tipo);
-                    break;
-                
-                case 3:
-                    System.out.println("Cadastre a bolsa: ");
-
-                    aux.setpBolsa();
-                    aux.setBolsa();
-                    aux.setPeriodoBolsa(scan);
-                    break;
-                case 4:
-                    System.out.println("Digite o novo email: ");
-                    String emailSec = scan.nextLine();
-
-                    aux.setEmail(emailSec);
-                    break;
-                case 5:
-                    System.out.println("Digite a nova senha: ");
-
-                    String password = scan.nextLine();
-
-                    aux.setPassword(password);
-                    break;
-                default:
-                    break;
-            }
-            this.users.add(aux);
-        }
-       return this.users;
     }
-    public  Usuarios login(Usuarios login){
+    public Cadastro login(Usuarios login){
 
             if(login != null){
                 System.out.println("Você ja está conectado ao sistema" + login.getEmail());
